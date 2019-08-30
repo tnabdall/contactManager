@@ -198,8 +198,9 @@
             // editContactToolStripMenuItem
             // 
             this.editContactToolStripMenuItem.Name = "editContactToolStripMenuItem";
-            this.editContactToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.editContactToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editContactToolStripMenuItem.Text = "Edit Contact";
+            this.editContactToolStripMenuItem.Click += new System.EventHandler(this.EditContactToolStripMenuItem_Click);
             // 
             // deleteContactToolStripMenuItem
             // 

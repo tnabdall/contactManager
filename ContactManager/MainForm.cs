@@ -15,7 +15,7 @@ namespace ContactManager
 {
     public partial class MainForm : Form
     {
-        public List<Person> UniversityMembers = new List<Person>();
+        public List<Person> contactsList = new List<Person>();
         public MainForm()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace ContactManager
             DialogResult result = facultyForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                UniversityMembers.Add(facultyForm.NewFaculty);
+                contactsList.Add(facultyForm.NewFaculty);
                 contactsListBox.Items.Add(facultyForm.NewFaculty.ToListBoxString());
             }
         }
@@ -50,7 +50,7 @@ namespace ContactManager
             DialogResult result = studentForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                UniversityMembers.Add(studentForm.newStudent);
+                contactsList.Add(studentForm.newStudent);
                 contactsListBox.Items.Add(studentForm.newStudent.ToListBoxString());
             }
         }
@@ -60,7 +60,7 @@ namespace ContactManager
             int selectedIndex = contactsListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
-                MessageBox.Show(UniversityMembers[selectedIndex].ToString(), "Contact Details", MessageBoxButtons.OK);
+                MessageBox.Show(contactsList[selectedIndex].ToString(), "Contact Details", MessageBoxButtons.OK);
             }
             else
             {
@@ -73,12 +73,37 @@ namespace ContactManager
             int selectedIndex = contactsListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
-                UniversityMembers.RemoveAt(selectedIndex);
+                contactsList.RemoveAt(selectedIndex);
                 contactsListBox.Items.RemoveAt(selectedIndex);
             }
             else
             {
                 MessageBox.Show("Must select a contact to remove.", "No contact selected.", MessageBoxButtons.OK);
+            }
+        }
+
+        private void EditContactToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = contactsListBox.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                Person person = contactsList[selectedIndex];
+                if(person is Student)
+                {
+                    AddEditStudentForm addEditStudentForm = new AddEditStudentForm((Student) person);
+                }
+                else if (person is Faculty)
+                {
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Error. Selected member is not a faculty or student.","Error",MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Must select a contact to edit.", "No contact selected.", MessageBoxButtons.OK);
             }
         }
     }
