@@ -19,7 +19,7 @@ namespace ContactManager
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Application.Exit(); 
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
