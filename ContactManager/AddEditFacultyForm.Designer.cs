@@ -104,6 +104,7 @@
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(410, 22);
             this.firstNameTextBox.TabIndex = 1;
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.FirstNameTextBox_TextChanged);
             // 
             // lastNameTextBox
             // 
@@ -111,6 +112,7 @@
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(410, 22);
             this.lastNameTextBox.TabIndex = 1;
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // academicDepartmentTextBox
             // 
@@ -118,6 +120,7 @@
             this.academicDepartmentTextBox.Name = "academicDepartmentTextBox";
             this.academicDepartmentTextBox.Size = new System.Drawing.Size(410, 22);
             this.academicDepartmentTextBox.TabIndex = 1;
+            this.academicDepartmentTextBox.TextChanged += new System.EventHandler(this.AcademicDepartmentTextBox_TextChanged);
             // 
             // emailAddressTextBox
             // 
@@ -125,6 +128,7 @@
             this.emailAddressTextBox.Name = "emailAddressTextBox";
             this.emailAddressTextBox.Size = new System.Drawing.Size(392, 22);
             this.emailAddressTextBox.TabIndex = 1;
+            this.emailAddressTextBox.TextChanged += new System.EventHandler(this.EmailAddressTextBox_TextChanged);
             // 
             // officeLocationBuildingTextBox
             // 
@@ -132,6 +136,7 @@
             this.officeLocationBuildingTextBox.Name = "officeLocationBuildingTextBox";
             this.officeLocationBuildingTextBox.Size = new System.Drawing.Size(392, 22);
             this.officeLocationBuildingTextBox.TabIndex = 1;
+            this.officeLocationBuildingTextBox.TextChanged += new System.EventHandler(this.OfficeLocationBuildingTextBox_TextChanged);
             // 
             // addButton
             // 

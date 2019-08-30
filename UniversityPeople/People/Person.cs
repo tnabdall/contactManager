@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversityPeople.ContactInformations;
 
-namespace UniversityPeople
+namespace UniversityPeople.People
 {
     public abstract class Person
     {
@@ -114,6 +115,17 @@ namespace UniversityPeople
             LastName = initialLastName;
             AcademicDepartment = initialAcademicDepartment;
             ContactInformation = initialContactInformation;
+        }
+
+        /// <summary>
+        /// Displays a formatted string for list box
+        /// </summary>
+        /// <returns>Listbox string</returns>
+        public abstract String ToListBoxString();
+
+        public override string ToString()
+        {
+            return $"First Name: {FirstName} \nLast Name: {LastName} \nDepartment: {AcademicDepartment} \n";
         }
     }
 }

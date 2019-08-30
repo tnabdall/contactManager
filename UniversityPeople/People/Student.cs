@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversityPeople.ContactInformations;
 
 namespace UniversityPeople.People
 {
@@ -112,6 +113,16 @@ namespace UniversityPeople.People
         public void RemoveAllCourses()
         {
             courseList.Clear();
+        }
+
+        public override string ToListBoxString()
+        {
+            return $"{ FirstName,12}{LastName,12}{"Student",12}{AcademicDepartment,20}";
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"Type: Student \nEmail: {ContactInformation.EmailAddress} \nOffice Location: {((StudentContactInformation)ContactInformation).MailingAddress}\n";
         }
     }
 }

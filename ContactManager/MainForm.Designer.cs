@@ -168,8 +168,9 @@
             // contactDetailsToolStripMenuItem
             // 
             this.contactDetailsToolStripMenuItem.Name = "contactDetailsToolStripMenuItem";
-            this.contactDetailsToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.contactDetailsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.contactDetailsToolStripMenuItem.Text = "Contact Details ...";
+            this.contactDetailsToolStripMenuItem.Click += new System.EventHandler(this.ContactDetailsToolStripMenuItem_Click);
             // 
             // addContactToolStripMenuItem
             // 
@@ -203,8 +204,9 @@
             // deleteContactToolStripMenuItem
             // 
             this.deleteContactToolStripMenuItem.Name = "deleteContactToolStripMenuItem";
-            this.deleteContactToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.deleteContactToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.deleteContactToolStripMenuItem.Text = "Delete Contact";
+            this.deleteContactToolStripMenuItem.Click += new System.EventHandler(this.DeleteContactToolStripMenuItem_Click);
             // 
             // searchForToolStripMenuItem
             // 

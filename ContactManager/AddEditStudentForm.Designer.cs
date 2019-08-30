@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.academicDepartmentLabel = new System.Windows.Forms.Label();
@@ -46,6 +47,12 @@
             this.expectedGraduationYearLabel = new System.Windows.Forms.Label();
             this.courseListLabel = new System.Windows.Forms.Label();
             this.courseListListBox = new System.Windows.Forms.ListBox();
+            this.courseListContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeAllCoursesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.courseListHelpLabel = new System.Windows.Forms.Label();
+            this.courseListContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // firstNameLabel
@@ -108,6 +115,7 @@
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(410, 22);
             this.firstNameTextBox.TabIndex = 1;
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.FirstNameTextBox_TextChanged);
             // 
             // lastNameTextBox
             // 
@@ -115,6 +123,7 @@
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(410, 22);
             this.lastNameTextBox.TabIndex = 1;
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // academicDepartmentTextBox
             // 
@@ -122,6 +131,7 @@
             this.academicDepartmentTextBox.Name = "academicDepartmentTextBox";
             this.academicDepartmentTextBox.Size = new System.Drawing.Size(410, 22);
             this.academicDepartmentTextBox.TabIndex = 1;
+            this.academicDepartmentTextBox.TextChanged += new System.EventHandler(this.AcademicDepartmentTextBox_TextChanged);
             // 
             // emailAddressTextBox
             // 
@@ -129,6 +139,7 @@
             this.emailAddressTextBox.Name = "emailAddressTextBox";
             this.emailAddressTextBox.Size = new System.Drawing.Size(392, 22);
             this.emailAddressTextBox.TabIndex = 1;
+            this.emailAddressTextBox.TextChanged += new System.EventHandler(this.EmailAddressTextBox_TextChanged);
             // 
             // mailingAddressTextBox
             // 
@@ -136,6 +147,7 @@
             this.mailingAddressTextBox.Name = "mailingAddressTextBox";
             this.mailingAddressTextBox.Size = new System.Drawing.Size(392, 22);
             this.mailingAddressTextBox.TabIndex = 1;
+            this.mailingAddressTextBox.TextChanged += new System.EventHandler(this.MailingAddressTextBox_TextChanged);
             // 
             // addButton
             // 
@@ -159,7 +171,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(470, 449);
+            this.saveButton.Location = new System.Drawing.Point(469, 449);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 3;
@@ -174,6 +186,7 @@
             this.expectedGraduationYearTextBox.Name = "expectedGraduationYearTextBox";
             this.expectedGraduationYearTextBox.Size = new System.Drawing.Size(121, 22);
             this.expectedGraduationYearTextBox.TabIndex = 1;
+            this.expectedGraduationYearTextBox.TextChanged += new System.EventHandler(this.ExpectedGraduationYearTextBox_TextChanged);
             // 
             // expectedGraduationYearLabel
             // 
@@ -195,18 +208,62 @@
             // 
             // courseListListBox
             // 
+            this.courseListListBox.ContextMenuStrip = this.courseListContextMenuStrip;
             this.courseListListBox.FormattingEnabled = true;
             this.courseListListBox.ItemHeight = 16;
             this.courseListListBox.Location = new System.Drawing.Point(238, 249);
             this.courseListListBox.Name = "courseListListBox";
-            this.courseListListBox.Size = new System.Drawing.Size(410, 180);
+            this.courseListListBox.Size = new System.Drawing.Size(410, 164);
             this.courseListListBox.TabIndex = 2;
+            this.courseListListBox.SelectedIndexChanged += new System.EventHandler(this.CourseListListBox_SelectedIndexChanged);
+            // 
+            // courseListContextMenuStrip
+            // 
+            this.courseListContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.courseListContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addCourseToolStripMenuItem,
+            this.removeCourseToolStripMenuItem,
+            this.removeAllCoursesToolStripMenuItem});
+            this.courseListContextMenuStrip.Name = "courseListContextMenuStrip";
+            this.courseListContextMenuStrip.Size = new System.Drawing.Size(210, 76);
+            // 
+            // addCourseToolStripMenuItem
+            // 
+            this.addCourseToolStripMenuItem.Name = "addCourseToolStripMenuItem";
+            this.addCourseToolStripMenuItem.Size = new System.Drawing.Size(209, 24);
+            this.addCourseToolStripMenuItem.Text = "Add Course";
+            this.addCourseToolStripMenuItem.Click += new System.EventHandler(this.AddCourseToolStripMenuItem_Click);
+            // 
+            // removeCourseToolStripMenuItem
+            // 
+            this.removeCourseToolStripMenuItem.Name = "removeCourseToolStripMenuItem";
+            this.removeCourseToolStripMenuItem.Size = new System.Drawing.Size(209, 24);
+            this.removeCourseToolStripMenuItem.Text = "Remove Course";
+            this.removeCourseToolStripMenuItem.Click += new System.EventHandler(this.RemoveCourseToolStripMenuItem_Click);
+            // 
+            // removeAllCoursesToolStripMenuItem
+            // 
+            this.removeAllCoursesToolStripMenuItem.Name = "removeAllCoursesToolStripMenuItem";
+            this.removeAllCoursesToolStripMenuItem.Size = new System.Drawing.Size(209, 24);
+            this.removeAllCoursesToolStripMenuItem.Text = "Remove All Courses";
+            this.removeAllCoursesToolStripMenuItem.Click += new System.EventHandler(this.RemoveAllCoursesToolStripMenuItem_Click);
+            // 
+            // courseListHelpLabel
+            // 
+            this.courseListHelpLabel.AutoSize = true;
+            this.courseListHelpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.courseListHelpLabel.Location = new System.Drawing.Point(238, 420);
+            this.courseListHelpLabel.Name = "courseListHelpLabel";
+            this.courseListHelpLabel.Size = new System.Drawing.Size(328, 17);
+            this.courseListHelpLabel.TabIndex = 5;
+            this.courseListHelpLabel.Text = "Right click on course list to bring up options";
             // 
             // AddEditStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 484);
+            this.Controls.Add(this.courseListHelpLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.addButton);
@@ -229,6 +286,7 @@
             this.Name = "AddEditStudentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddEditFacultyForm";
+            this.courseListContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,5 +312,10 @@
         private System.Windows.Forms.Label expectedGraduationYearLabel;
         private System.Windows.Forms.Label courseListLabel;
         private System.Windows.Forms.ListBox courseListListBox;
+        private System.Windows.Forms.ContextMenuStrip courseListContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem addCourseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeCourseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeAllCoursesToolStripMenuItem;
+        private System.Windows.Forms.Label courseListHelpLabel;
     }
 }
