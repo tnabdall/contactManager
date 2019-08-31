@@ -112,7 +112,7 @@ namespace UniversityPeople.People
         {
             // Parse parameters from string with specified delimiter
             char[] delimiters = { '|' };
-            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.None);
 
             ContactInformation = new StudentContactInformation(parameters[4], parameters[5]);
             int expectedGraduationYear;
@@ -124,7 +124,7 @@ namespace UniversityPeople.People
             {
                 throw new ArgumentOutOfRangeException("Cannot read graduation year from file");
             }
-            courseList = new List<string>(parameters[7].Split(','));
+            courseList = new List<string>(parameters[7].Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries));
         
         }
 
@@ -182,7 +182,7 @@ namespace UniversityPeople.People
 
         public override string ToFileString()
         {
-            return $"S|{base.ToFileString()}|{ContactInformation.EmailAddress}|{ContactInformation.MailingAddress}|{ExpectedGraduationYear}|{String.Join(",",courseList)}";
+            return $"S|{FirstName}|{LastName}|{AcademicDepartment}|{ContactInformation.EmailAddress}|{ContactInformation.MailingAddress}|{ExpectedGraduationYear}|{String.Join(",",courseList)}";
         }
 
         public override string ToString()

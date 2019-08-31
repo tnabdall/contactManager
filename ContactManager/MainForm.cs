@@ -27,12 +27,32 @@ namespace ContactManager
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!fileSaved)
+            {
+                DialogResult result = MessageBox.Show("Would you like to save before closing?","Confirm Exit",MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    bool userSavedFile = SaveFile(true);
+                    if (!userSavedFile) { return; }
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                else // They chose No
+                {
+                    // Continue to exit
+                }
+            }
             Application.Exit(); 
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String message = "This application allows you to manage contact information for members of the university.\n\n" +
+            MessageBox.Show(contactsListBox.SelectedIndices.Count.ToString());
+            String message = "This application allows you to manage contact information for members of the university.\n" +
+                "Right click on contacts box to bring up options to add, edit, delete, or search for contacts\n" +
+                "This application currently supports adding faculty and students\n" +
                 "Please contact Tarik if you need help.";
             MessageBox.Show(message, "Contact Manager Help", MessageBoxButtons.OK);
         }
@@ -63,24 +83,32 @@ namespace ContactManager
 
         private void ContactDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int selectedIndex = contactsListBox.SelectedIndex;
-            if (selectedIndex != -1)
+            List<int> selectedIndices = contactsListBox.SelectedIndices.Cast<int>().ToList();
+            if (selectedIndices.Count == 1)
             {
-                MessageBox.Show(contactsList[selectedIndex].ToString(), "Contact Details", MessageBoxButtons.OK);
+                MessageBox.Show(contactsList[selectedIndices[0]].ToString(), "Contact Details", MessageBoxButtons.OK);
+            }
+            else if (selectedIndices.Count == 0)
+            {
+                MessageBox.Show("No contact selected.", "Choose a contact", MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("No contact selected.", "Choose a contact", MessageBoxButtons.OK);
+                MessageBox.Show("Too many contacts selected. Choose only one contact.", "Choose a contact", MessageBoxButtons.OK);
             }
         }
 
         private void DeleteContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int selectedIndex = contactsListBox.SelectedIndex;
-            if (selectedIndex != -1)
+            List<int> selectedIndices = contactsListBox.SelectedIndices.Cast<int>().ToList();
+            selectedIndices.Sort();
+            if (selectedIndices.Count>0)
             {
-                contactsList.RemoveAt(selectedIndex);
-                contactsListBox.Items.RemoveAt(selectedIndex);
+                for (int i = selectedIndices.Count - 1; i > -1; i--)
+                {
+                    contactsList.RemoveAt(selectedIndices[i]);
+                    contactsListBox.Items.RemoveAt(selectedIndices[i]);
+                }
             }
             else
             {
@@ -90,10 +118,10 @@ namespace ContactManager
 
         private void EditContactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int selectedIndex = contactsListBox.SelectedIndex;
-            if (selectedIndex != -1)
+            List<int> selectedIndices = contactsListBox.SelectedIndices.Cast<int>().ToList();
+            if (selectedIndices.Count==1)
             {
-                Person person = contactsList[selectedIndex];
+                Person person = contactsList[selectedIndices[0]];
                 if (person is Student)
                 {
                     AddEditStudentForm addEditStudentForm = new AddEditStudentForm((Student)person);
@@ -101,7 +129,7 @@ namespace ContactManager
                     if (result == DialogResult.OK)
                     {
                         MessageBox.Show($"Saved changes to student {person.FirstName} {person.LastName}");
-                        contactsListBox.Items[selectedIndex] = contactsList[selectedIndex].ToListBoxString();
+                        contactsListBox.Items[selectedIndices[0]] = contactsList[selectedIndices[0]].ToListBoxString();
                         fileSaved = false;
                     }
                 }
@@ -112,7 +140,7 @@ namespace ContactManager
                     if (result == DialogResult.OK)
                     {
                         MessageBox.Show($"Saved changes to student {person.FirstName} {person.LastName}");
-                        contactsListBox.Items[selectedIndex] = contactsList[selectedIndex].ToListBoxString();
+                        contactsListBox.Items[selectedIndices[0]] = contactsList[selectedIndices[0]].ToListBoxString();
                         fileSaved = false;
                     }
                 }
@@ -121,9 +149,13 @@ namespace ContactManager
                     MessageBox.Show("Error. Selected member is not a faculty or student.", "Error", MessageBoxButtons.OK);
                 }
             }
-            else
+            else if (selectedIndices.Count==0)
             {
                 MessageBox.Show("Must select a contact to edit.", "No contact selected.", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Must select only one contact to edit.", "Too many contacts selected.", MessageBoxButtons.OK);
             }
         }
 
@@ -139,6 +171,24 @@ namespace ContactManager
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!fileSaved)
+            {
+                DialogResult result = MessageBox.Show("Would you like to save before opening a new file?", "Confirm", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    SaveFile(true);
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                else // They chose No
+                {
+                    // Continue to clear and load file
+                }
+            }
+            contactsList.Clear();
+            contactsListBox.Items.Clear();
             LoadFile();
         }
 
@@ -187,13 +237,13 @@ namespace ContactManager
             }
         }
 
-        private void SaveFile(bool saveAs)
+        private bool SaveFile(bool saveAs)
         {
             if(saveAs || Filepath == null)
             {
                 if (!SaveFilePathDialog())
                 {
-                    return;
+                    return false ;
                 }
             }
             StreamWriter output = null;
@@ -206,20 +256,23 @@ namespace ContactManager
                 }
                 output.Close();
                 fileSaved = true;
+                return true;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("Could not write file " + Filepath + ". " + ex.Message);
+                return false;
             }
             catch (IOException ex)
             {
                 MessageBox.Show("Error in writing " + Filepath + ". " + ex.Message);
+                return false;
             }
         }
 
-        private void LoadFile()
+        private bool LoadFile()
         {
-            if (!OpenFilePathDialog()) { return; }
+            if (!OpenFilePathDialog()) { return false; }
           
             StreamReader input = null;
             try
@@ -261,16 +314,79 @@ namespace ContactManager
                     MessageBox.Show("Could not read some file data.", "Error", MessageBoxButtons.OK);
                 }
                 input.Close();
+                return true;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("Could not find file " + Filepath + ". " + ex.Message);
+                return false;
             }
             catch (IOException ex)
             {
                 MessageBox.Show("Error in reading " + Filepath + ". " + ex.Message);
+                return false;
             }
 
+        }
+
+        private void FirstNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetOneFieldDialog dialog = new GetOneFieldDialog("Enter first name", "First Name", "Search", "Cancel", Validation.IsNotEmptyOrNull);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                for(int i = 0; i<contactsList.Count; i++)
+                {
+                    if (contactsList[i].FirstName.ToUpper().Equals(dialog.Value.ToUpper()))
+                    {
+                        contactsListBox.SetSelected(i, true);
+                    }
+                    else
+                    {
+                        contactsListBox.SetSelected(i, false);
+                    }
+                }
+            }
+        }
+
+        private void LastNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetOneFieldDialog dialog = new GetOneFieldDialog("Enter last name", "Last Name", "Search", "Cancel", Validation.IsNotEmptyOrNull);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                for (int i = 0; i < contactsList.Count; i++)
+                {
+                    if (contactsList[i].LastName.ToUpper().Equals(dialog.Value.ToUpper()))
+                    {
+                        contactsListBox.SetSelected(i, true);
+                    }
+                    else
+                    {
+                        contactsListBox.SetSelected(i, false);
+                    }
+                }
+            }
+        }
+
+        private void FirstAndLastNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetTwoFieldsDialog dialog = new GetTwoFieldsDialog("Enter first and last name", "First Name", "Last Name", "Search", "Cancel", Validation.IsNotEmptyOrNull, Validation.IsNotEmptyOrNull);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                for (int i = 0; i < contactsList.Count; i++)
+                {
+                    if (contactsList[i].FirstName.ToUpper() == dialog.Value1.ToUpper() && contactsList[i].LastName.ToUpper()==dialog.Value2.ToUpper())
+                    {
+                        contactsListBox.SetSelected(i, true);
+                    }
+                    else
+                    {
+                        contactsListBox.SetSelected(i, false);
+                    }
+                }
+            }
         }
     }
 }

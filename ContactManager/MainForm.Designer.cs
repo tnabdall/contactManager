@@ -143,6 +143,7 @@
             this.contactsListBox.ItemHeight = 16;
             this.contactsListBox.Location = new System.Drawing.Point(12, 79);
             this.contactsListBox.Name = "contactsListBox";
+            this.contactsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.contactsListBox.Size = new System.Drawing.Size(581, 356);
             this.contactsListBox.TabIndex = 1;
             this.contactsListBoxToolTip.SetToolTip(this.contactsListBox, "Right click to view/modify contacts");
@@ -157,7 +158,7 @@
             this.deleteContactToolStripMenuItem,
             this.searchForToolStripMenuItem});
             this.contactsListBoxContextMenuStrip.Name = "contactsListBoxContextMenuStrip";
-            this.contactsListBoxContextMenuStrip.Size = new System.Drawing.Size(193, 124);
+            this.contactsListBoxContextMenuStrip.Size = new System.Drawing.Size(211, 152);
             // 
             // contactDetailsToolStripMenuItem
             // 
@@ -210,26 +211,29 @@
             this.lastNameToolStripMenuItem,
             this.firstAndLastNameToolStripMenuItem});
             this.searchForToolStripMenuItem.Name = "searchForToolStripMenuItem";
-            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
+            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.searchForToolStripMenuItem.Text = "Search For";
             // 
             // firstNameToolStripMenuItem
             // 
             this.firstNameToolStripMenuItem.Name = "firstNameToolStripMenuItem";
-            this.firstNameToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.firstNameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.firstNameToolStripMenuItem.Text = "First Name";
+            this.firstNameToolStripMenuItem.Click += new System.EventHandler(this.FirstNameToolStripMenuItem_Click);
             // 
             // lastNameToolStripMenuItem
             // 
             this.lastNameToolStripMenuItem.Name = "lastNameToolStripMenuItem";
-            this.lastNameToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.lastNameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.lastNameToolStripMenuItem.Text = "Last Name";
+            this.lastNameToolStripMenuItem.Click += new System.EventHandler(this.LastNameToolStripMenuItem_Click);
             // 
             // firstAndLastNameToolStripMenuItem
             // 
             this.firstAndLastNameToolStripMenuItem.Name = "firstAndLastNameToolStripMenuItem";
-            this.firstAndLastNameToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.firstAndLastNameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.firstAndLastNameToolStripMenuItem.Text = "First and Last Name";
+            this.firstAndLastNameToolStripMenuItem.Click += new System.EventHandler(this.FirstAndLastNameToolStripMenuItem_Click);
             // 
             // contactsListBoxLabel
             // 

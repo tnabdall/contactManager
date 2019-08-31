@@ -37,7 +37,7 @@ namespace UniversityPeople.People
         {
             // Parse parameters from string with specified delimiter
             char[] delimiters = { '|' };
-            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.None);
 
             ContactInformation = new FacultyContactInformation(parameters[4], parameters[5]);
         }
@@ -49,7 +49,7 @@ namespace UniversityPeople.People
 
         public override string ToFileString()
         {
-            return $"F|{base.ToFileString()}|{ContactInformation.EmailAddress}|{ContactInformation.BuildingLocation}";
+            return $"F|{FirstName}|{LastName}|{AcademicDepartment}|{ContactInformation.EmailAddress}|{ContactInformation.BuildingLocation}";
         }
 
         public override String ToString()

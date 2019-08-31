@@ -117,11 +117,11 @@ namespace UniversityPeople.People
             ContactInformation = initialContactInformation;
         }
 
-        public Person(String fromFile)
+        protected Person(String fromFile)
         {
             // Parse parameters from string with specified delimiter
             char[] delimiters = { '|' };
-            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.None);
 
             FirstName = parameters[1];
             LastName = parameters[2];
@@ -134,10 +134,7 @@ namespace UniversityPeople.People
         /// <returns>Listbox string</returns>
         public abstract String ToListBoxString();
 
-        public virtual String ToFileString()
-        {
-            return $"{FirstName}|{LastName}|{AcademicDepartment}";
-        }
+        public abstract String ToFileString();
 
         public override string ToString()
         {

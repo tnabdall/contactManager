@@ -58,6 +58,12 @@
     <Compile Include="AddEditStudentForm.Designer.cs">
       <DependentUpon>AddEditStudentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetTwoFieldsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetTwoFieldsDialog.Designer.cs">
+      <DependentUpon>GetTwoFieldsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="GetOneFieldDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditStudentForm.resx">
       <DependentUpon>AddEditStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GetTwoFieldsDialog.resx">
+      <DependentUpon>GetTwoFieldsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GetOneFieldDialog.resx">
       <DependentUpon>GetOneFieldDialog.cs</DependentUpon>
