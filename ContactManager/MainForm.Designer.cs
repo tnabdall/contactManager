@@ -86,6 +86,7 @@
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.openToolStripMenuItem.Text = "Open ...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveContactsToolStripMenuItem
             // 
@@ -93,6 +94,7 @@
             this.saveContactsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveContactsToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.saveContactsToolStripMenuItem.Text = "Save Contacts";
+            this.saveContactsToolStripMenuItem.Click += new System.EventHandler(this.SaveContactsToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -101,6 +103,7 @@
             | System.Windows.Forms.Keys.S)));
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.saveAsToolStripMenuItem.Text = "Save As ...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

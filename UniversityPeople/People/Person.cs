@@ -117,11 +117,27 @@ namespace UniversityPeople.People
             ContactInformation = initialContactInformation;
         }
 
+        public Person(String fromFile)
+        {
+            // Parse parameters from string with specified delimiter
+            char[] delimiters = { '|' };
+            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            FirstName = parameters[1];
+            LastName = parameters[2];
+            AcademicDepartment = parameters[3];          
+        }
+
         /// <summary>
         /// Displays a formatted string for list box
         /// </summary>
         /// <returns>Listbox string</returns>
         public abstract String ToListBoxString();
+
+        public virtual String ToFileString()
+        {
+            return $"{FirstName}|{LastName}|{AcademicDepartment}";
+        }
 
         public override string ToString()
         {

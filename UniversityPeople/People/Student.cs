@@ -32,15 +32,35 @@ namespace UniversityPeople.People
         }
 
         /// <summary>
-        /// Course List. Accessing list returns copy. Use public methods to alter list.
+        /// Course List. Accessing list returns copy. Setting list sets new copy. Use public methods to alter list.
         /// </summary>
         public List<string> CourseList
         {
             get
             {
                 return courseList.ToList<string>();
-            }        
+            }
+
+            set
+            {
+                courseList = value.ToList<string>();
+            }
+            
         }
+
+        public new StudentContactInformation ContactInformation
+        {
+            get
+            {
+                return (StudentContactInformation) base.ContactInformation;
+            }
+            set
+            {
+                base.ContactInformation = value;
+            }
+        }
+
+        // Maybe put a getter for the indices in course list
 
         private int expectedGraduationYear;
         private List<string> courseList;
@@ -55,13 +75,13 @@ namespace UniversityPeople.People
         /// <param name="initialCourseList">Initial course list. If not supplied, empty course list will be created.</param>
         public Student(String initialFirstName, String initialLastName, String initialAcademicDepartment, StudentContactInformation initialContactInformation, List<string> initialCourseList = null) : base(initialFirstName, initialLastName, initialAcademicDepartment, initialContactInformation)
         {
-            if (courseList == null)
+            if (initialCourseList == null)
             {
-                courseList = new List<string>();
+                CourseList = new List<string>();
             }
             else
             {
-                courseList = initialCourseList.ToList<string>();
+                CourseList = initialCourseList;
             }
             ExpectedGraduationYear = DateTime.Now.Year + 4;
         }
@@ -86,6 +106,26 @@ namespace UniversityPeople.People
                 courseList = initialCourseList.ToList<string>();
             }
             ExpectedGraduationYear = initialExpectedGraduationYear;
+        }
+
+        public Student(String fromFile):base(fromFile)
+        {
+            // Parse parameters from string with specified delimiter
+            char[] delimiters = { '|' };
+            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            ContactInformation = new StudentContactInformation(parameters[4], parameters[5]);
+            int expectedGraduationYear;
+            if (int.TryParse(parameters[6], out expectedGraduationYear))
+            {
+                ExpectedGraduationYear = expectedGraduationYear;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Cannot read graduation year from file");
+            }
+            courseList = new List<string>(parameters[7].Split(','));
+        
         }
 
         /// <summary>
@@ -133,14 +173,27 @@ namespace UniversityPeople.People
             courseList.Clear();
         }
 
+
+
         public override string ToListBoxString()
         {
             return $"{ FirstName,12}{LastName,12}{"Student",12}{AcademicDepartment,20}";
         }
 
+        public override string ToFileString()
+        {
+            return $"S|{base.ToFileString()}|{ContactInformation.EmailAddress}|{ContactInformation.MailingAddress}|{ExpectedGraduationYear}|{String.Join(",",courseList)}";
+        }
+
         public override string ToString()
         {
-            return base.ToString() + $"Type: Student \nEmail: {ContactInformation.EmailAddress} \nOffice Location: {((StudentContactInformation)ContactInformation).MailingAddress}\n";
+            String infoString = base.ToString() + $"Type: Student \nEmail: {ContactInformation.EmailAddress} \nMailing Address: {ContactInformation.MailingAddress}\nExpected Graduation Year: {ExpectedGraduationYear}\nCourse List:\n";
+            for(int i = 0; i<courseList.Count; i++)
+            {
+                infoString += courseList[i] + "\n";
+            }
+            return infoString;
+
         }
     }
 }

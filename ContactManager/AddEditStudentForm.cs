@@ -14,7 +14,7 @@ namespace ContactManager
 {
     public partial class AddEditStudentForm : Form
     {
-        public List<string> courseList = new List<string>();
+        private List<string> newCourseList = new List<string>();
         public Student newStudent = null;
         private Student editStudent = null;
         private bool editMode = false;
@@ -28,11 +28,19 @@ namespace ContactManager
         {
             editMode = true;
             this.editStudent = editStudent;
+            newCourseList = editStudent.CourseList; // Deep copy list
             addButton.Text = "Save";
-            for(int i = 0; i< this.courseList.Count; i++)
+            for(int i = 0; i< this.newCourseList.Count; i++)
             {
-                courseListListBox.Items.Add(this.courseList[i]);
+                courseListListBox.Items.Add(this.newCourseList[i]);
             }
+            firstNameTextBox.Text = editStudent.FirstName;
+            lastNameTextBox.Text = editStudent.LastName;
+            academicDepartmentTextBox.Text = editStudent.AcademicDepartment;
+            emailAddressTextBox.Text = editStudent.ContactInformation.EmailAddress;
+            mailingAddressTextBox.Text = editStudent.ContactInformation.MailingAddress;
+            expectedGraduationYearTextBox.Text = editStudent.ExpectedGraduationYear.ToString();
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -65,7 +73,7 @@ namespace ContactManager
                     lastNameTextBox.Text.Trim(),
                     academicDepartmentTextBox.Text.Trim(),
                     new StudentContactInformation(emailAddressTextBox.Text.Trim(), mailingAddressTextBox.Text.Trim()),
-                    courseList);
+                    newCourseList);
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
@@ -95,10 +103,16 @@ namespace ContactManager
                 {
                     editStudent.ContactInformation.EmailAddress = emailAddressTextBox.Text.Trim();
                 }
-                if (((StudentContactInformation)editStudent.ContactInformation).MailingAddress != mailingAddressTextBox.Text.Trim())
+                if (editStudent.ContactInformation.MailingAddress != mailingAddressTextBox.Text.Trim())
                 {
-                    ((StudentContactInformation)editStudent.ContactInformation).MailingAddress = mailingAddressTextBox.Text.Trim();
+                    editStudent.ContactInformation.MailingAddress = mailingAddressTextBox.Text.Trim();
                 }
+                int year;
+                if(int.TryParse(expectedGraduationYearTextBox.Text.Trim(),out year) && editStudent.ExpectedGraduationYear != year)
+                {
+                    editStudent.ExpectedGraduationYear = year;
+                }
+                editStudent.CourseList = newCourseList;
                 DialogResult = DialogResult.OK;
             }
             catch(Exception ex)
@@ -186,14 +200,9 @@ namespace ContactManager
             GetOneFieldDialog courseDialog = new GetOneFieldDialog("Enter course","Course: ","Add");
             DialogResult result = courseDialog.ShowDialog();
             if(result == DialogResult.OK)
-            {
-                if (editMode)
-                {
-                    editStudent.AddCourse(courseDialog.Value);
-                }
-                courseList.Add(courseDialog.Value);
-                courseListListBox.Items.Add(courseDialog.Value);
-                
+            { 
+                newCourseList.Add(courseDialog.Value);
+                courseListListBox.Items.Add(courseDialog.Value);                
             }
             
         }
@@ -207,27 +216,14 @@ namespace ContactManager
             }
             else
             {               
-                
-                if (editMode)
-                {
-                    if (!editStudent.TryRemoveAtCourse(selectedIndex))
-                    {
-                        MessageBox.Show("Unable to remove course from student's file.");
-                        return;
-                    }
-                }
-                courseList.RemoveAt(selectedIndex);
+                newCourseList.RemoveAt(selectedIndex);
                 courseListListBox.Items.RemoveAt(selectedIndex);
             }
         }
 
         private void RemoveAllCoursesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (editMode)
-            {
-                editStudent.RemoveAllCourses();
-            }
-            courseList.Clear();
+            newCourseList.Clear();
             courseListListBox.Items.Clear();
         }
     }

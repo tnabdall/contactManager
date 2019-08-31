@@ -9,6 +9,18 @@ namespace UniversityPeople.People
 {
     public class Faculty : Person
     {
+        public new FacultyContactInformation ContactInformation
+        {
+            get
+            {
+                return (FacultyContactInformation)base.ContactInformation;
+            }
+            set
+            {
+                base.ContactInformation = value;
+            }
+        }
+
         /// <summary>
         /// Creates a faculty member.
         /// </summary>
@@ -21,14 +33,28 @@ namespace UniversityPeople.People
             // Nothing unique yet
         }
 
+        public Faculty(String fromFile) : base(fromFile)
+        {
+            // Parse parameters from string with specified delimiter
+            char[] delimiters = { '|' };
+            String[] parameters = fromFile.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            ContactInformation = new FacultyContactInformation(parameters[4], parameters[5]);
+        }
+
         public override string ToListBoxString()
         {
             return $"{ FirstName,12}{LastName,12}{"Faculty",12}{AcademicDepartment,20}";
         }
 
+        public override string ToFileString()
+        {
+            return $"F|{base.ToFileString()}|{ContactInformation.EmailAddress}|{ContactInformation.BuildingLocation}";
+        }
+
         public override String ToString()
         {
-            return base.ToString() + $"Type: Faculty \nEmail: {ContactInformation.EmailAddress} \nOffice Location: {((FacultyContactInformation)ContactInformation).BuildingLocation}";
+            return base.ToString() + $"Type: Faculty \nEmail: {ContactInformation.EmailAddress} \nOffice Location: {ContactInformation.BuildingLocation}";
         }
     }
 }

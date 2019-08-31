@@ -41,7 +41,6 @@
             this.officeLocationBuildingTextBox = new System.Windows.Forms.TextBox();
             this.addButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // firstNameLabel
@@ -158,24 +157,12 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(470, 250);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Visible = false;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
             // AddEditFacultyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 293);
             this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.officeLocationBuildingTextBox);
             this.Controls.Add(this.emailAddressTextBox);
@@ -212,6 +199,5 @@
         private System.Windows.Forms.TextBox officeLocationBuildingTextBox;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button saveButton;
     }
 }
