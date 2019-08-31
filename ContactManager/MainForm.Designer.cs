@@ -64,7 +64,7 @@
             this.helpToolStripMenuItem});
             this.mainFormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainFormMenuStrip.Name = "mainFormMenuStrip";
-            this.mainFormMenuStrip.Size = new System.Drawing.Size(605, 28);
+            this.mainFormMenuStrip.Size = new System.Drawing.Size(605, 30);
             this.mainFormMenuStrip.TabIndex = 0;
             this.mainFormMenuStrip.Text = "menuStrip1";
             // 
@@ -139,12 +139,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.contactsListBox.ContextMenuStrip = this.contactsListBoxContextMenuStrip;
+            this.contactsListBox.Font = new System.Drawing.Font("Consolas", 10F);
             this.contactsListBox.FormattingEnabled = true;
-            this.contactsListBox.ItemHeight = 16;
+            this.contactsListBox.ItemHeight = 20;
             this.contactsListBox.Location = new System.Drawing.Point(12, 79);
             this.contactsListBox.Name = "contactsListBox";
             this.contactsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.contactsListBox.Size = new System.Drawing.Size(581, 356);
+            this.contactsListBox.Size = new System.Drawing.Size(581, 344);
             this.contactsListBox.TabIndex = 1;
             this.contactsListBoxToolTip.SetToolTip(this.contactsListBox, "Right click to view/modify contacts");
             // 
@@ -158,7 +159,7 @@
             this.deleteContactToolStripMenuItem,
             this.searchForToolStripMenuItem});
             this.contactsListBoxContextMenuStrip.Name = "contactsListBoxContextMenuStrip";
-            this.contactsListBoxContextMenuStrip.Size = new System.Drawing.Size(211, 152);
+            this.contactsListBoxContextMenuStrip.Size = new System.Drawing.Size(193, 124);
             // 
             // contactDetailsToolStripMenuItem
             // 
@@ -239,12 +240,12 @@
             // 
             this.contactsListBoxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.contactsListBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactsListBoxLabel.Location = new System.Drawing.Point(12, 43);
             this.contactsListBoxLabel.Name = "contactsListBoxLabel";
             this.contactsListBoxLabel.Size = new System.Drawing.Size(581, 23);
             this.contactsListBoxLabel.TabIndex = 2;
-            this.contactsListBoxLabel.Text = "First Name                       Last Name                    Type               " +
-    "    Department";
+            this.contactsListBoxLabel.Text = "First Name             Last Name             Type                Department";
             // 
             // MainForm
             // 

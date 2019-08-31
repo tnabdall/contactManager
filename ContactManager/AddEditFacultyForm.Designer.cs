@@ -110,7 +110,7 @@
             this.lastNameTextBox.Location = new System.Drawing.Point(238, 57);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(410, 22);
-            this.lastNameTextBox.TabIndex = 1;
+            this.lastNameTextBox.TabIndex = 2;
             this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // academicDepartmentTextBox
@@ -118,7 +118,7 @@
             this.academicDepartmentTextBox.Location = new System.Drawing.Point(238, 89);
             this.academicDepartmentTextBox.Name = "academicDepartmentTextBox";
             this.academicDepartmentTextBox.Size = new System.Drawing.Size(410, 22);
-            this.academicDepartmentTextBox.TabIndex = 1;
+            this.academicDepartmentTextBox.TabIndex = 3;
             this.academicDepartmentTextBox.TextChanged += new System.EventHandler(this.AcademicDepartmentTextBox_TextChanged);
             // 
             // emailAddressTextBox
@@ -126,7 +126,7 @@
             this.emailAddressTextBox.Location = new System.Drawing.Point(256, 156);
             this.emailAddressTextBox.Name = "emailAddressTextBox";
             this.emailAddressTextBox.Size = new System.Drawing.Size(392, 22);
-            this.emailAddressTextBox.TabIndex = 1;
+            this.emailAddressTextBox.TabIndex = 4;
             this.emailAddressTextBox.TextChanged += new System.EventHandler(this.EmailAddressTextBox_TextChanged);
             // 
             // officeLocationBuildingTextBox
@@ -134,7 +134,7 @@
             this.officeLocationBuildingTextBox.Location = new System.Drawing.Point(256, 183);
             this.officeLocationBuildingTextBox.Name = "officeLocationBuildingTextBox";
             this.officeLocationBuildingTextBox.Size = new System.Drawing.Size(392, 22);
-            this.officeLocationBuildingTextBox.TabIndex = 1;
+            this.officeLocationBuildingTextBox.TabIndex = 5;
             this.officeLocationBuildingTextBox.TextChanged += new System.EventHandler(this.OfficeLocationBuildingTextBox_TextChanged);
             // 
             // addButton
@@ -142,7 +142,7 @@
             this.addButton.Location = new System.Drawing.Point(470, 250);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 3;
+            this.addButton.TabIndex = 6;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -152,15 +152,17 @@
             this.cancelButton.Location = new System.Drawing.Point(573, 250);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 3;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AddEditFacultyForm
             // 
+            this.AcceptButton = this.addButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(676, 293);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addButton);

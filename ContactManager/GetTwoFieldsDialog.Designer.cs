@@ -58,7 +58,7 @@
             this.okButton.Location = new System.Drawing.Point(231, 110);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 2;
+            this.okButton.TabIndex = 3;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -68,7 +68,7 @@
             this.cancelButton.Location = new System.Drawing.Point(325, 110);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 2;
+            this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -87,13 +87,15 @@
             this.value2TextBox.Location = new System.Drawing.Point(142, 74);
             this.value2TextBox.Name = "value2TextBox";
             this.value2TextBox.Size = new System.Drawing.Size(258, 22);
-            this.value2TextBox.TabIndex = 1;
+            this.value2TextBox.TabIndex = 2;
             this.value2TextBox.TextChanged += new System.EventHandler(this.Value2TextBox_TextChanged);
             // 
             // GetTwoFieldsDialog
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(435, 149);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);

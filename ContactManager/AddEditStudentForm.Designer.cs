@@ -121,7 +121,7 @@
             this.lastNameTextBox.Location = new System.Drawing.Point(238, 57);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(410, 22);
-            this.lastNameTextBox.TabIndex = 1;
+            this.lastNameTextBox.TabIndex = 2;
             this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // academicDepartmentTextBox
@@ -129,7 +129,7 @@
             this.academicDepartmentTextBox.Location = new System.Drawing.Point(238, 89);
             this.academicDepartmentTextBox.Name = "academicDepartmentTextBox";
             this.academicDepartmentTextBox.Size = new System.Drawing.Size(410, 22);
-            this.academicDepartmentTextBox.TabIndex = 1;
+            this.academicDepartmentTextBox.TabIndex = 3;
             this.academicDepartmentTextBox.TextChanged += new System.EventHandler(this.AcademicDepartmentTextBox_TextChanged);
             // 
             // emailAddressTextBox
@@ -137,7 +137,7 @@
             this.emailAddressTextBox.Location = new System.Drawing.Point(256, 156);
             this.emailAddressTextBox.Name = "emailAddressTextBox";
             this.emailAddressTextBox.Size = new System.Drawing.Size(392, 22);
-            this.emailAddressTextBox.TabIndex = 1;
+            this.emailAddressTextBox.TabIndex = 4;
             this.emailAddressTextBox.TextChanged += new System.EventHandler(this.EmailAddressTextBox_TextChanged);
             // 
             // mailingAddressTextBox
@@ -145,7 +145,7 @@
             this.mailingAddressTextBox.Location = new System.Drawing.Point(256, 183);
             this.mailingAddressTextBox.Name = "mailingAddressTextBox";
             this.mailingAddressTextBox.Size = new System.Drawing.Size(392, 22);
-            this.mailingAddressTextBox.TabIndex = 1;
+            this.mailingAddressTextBox.TabIndex = 5;
             this.mailingAddressTextBox.TextChanged += new System.EventHandler(this.MailingAddressTextBox_TextChanged);
             // 
             // addButton
@@ -153,7 +153,7 @@
             this.addButton.Location = new System.Drawing.Point(470, 449);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 3;
+            this.addButton.TabIndex = 8;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -163,7 +163,7 @@
             this.cancelButton.Location = new System.Drawing.Point(573, 449);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 3;
+            this.cancelButton.TabIndex = 9;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -173,7 +173,7 @@
             this.expectedGraduationYearTextBox.Location = new System.Drawing.Point(238, 215);
             this.expectedGraduationYearTextBox.Name = "expectedGraduationYearTextBox";
             this.expectedGraduationYearTextBox.Size = new System.Drawing.Size(121, 22);
-            this.expectedGraduationYearTextBox.TabIndex = 1;
+            this.expectedGraduationYearTextBox.TabIndex = 6;
             this.expectedGraduationYearTextBox.TextChanged += new System.EventHandler(this.ExpectedGraduationYearTextBox_TextChanged);
             // 
             // expectedGraduationYearLabel
@@ -197,12 +197,13 @@
             // courseListListBox
             // 
             this.courseListListBox.ContextMenuStrip = this.courseListContextMenuStrip;
+            this.courseListListBox.Font = new System.Drawing.Font("Consolas", 10F);
             this.courseListListBox.FormattingEnabled = true;
-            this.courseListListBox.ItemHeight = 16;
+            this.courseListListBox.ItemHeight = 20;
             this.courseListListBox.Location = new System.Drawing.Point(238, 249);
             this.courseListListBox.Name = "courseListListBox";
             this.courseListListBox.Size = new System.Drawing.Size(410, 164);
-            this.courseListListBox.TabIndex = 2;
+            this.courseListListBox.TabIndex = 7;
             this.courseListToolTip.SetToolTip(this.courseListListBox, "Right click to add/remove courses");
             this.courseListListBox.SelectedIndexChanged += new System.EventHandler(this.CourseListListBox_SelectedIndexChanged);
             // 
@@ -239,8 +240,10 @@
             // 
             // AddEditStudentForm
             // 
+            this.AcceptButton = this.addButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(676, 484);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addButton);

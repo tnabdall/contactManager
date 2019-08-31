@@ -38,16 +38,19 @@ namespace UniversityPeople.People
         {
             get
             {
-                return courseList.ToList<string>();
+                return courseList.ToList<string>(); // Deep Copy
             }
 
             set
             {
-                courseList = value.ToList<string>();
+                courseList = value.ToList<string>(); // Deep copy
             }
             
         }
 
+        /// <summary>
+        /// Returns contact information in base class as StudentContactInformation type
+        /// </summary>
         public new StudentContactInformation ContactInformation
         {
             get
@@ -60,8 +63,7 @@ namespace UniversityPeople.People
             }
         }
 
-        // Maybe put a getter for the indices in course list
-
+     
         private int expectedGraduationYear;
         private List<string> courseList;
 
@@ -108,6 +110,10 @@ namespace UniversityPeople.People
             ExpectedGraduationYear = initialExpectedGraduationYear;
         }
 
+        /// <summary>
+        /// Creates a student from a file formatted string
+        /// </summary>
+        /// <param name="fromFile">File formatted string</param>
         public Student(String fromFile):base(fromFile)
         {
             // Parse parameters from string with specified delimiter
@@ -115,6 +121,8 @@ namespace UniversityPeople.People
             String[] parameters = fromFile.Split(delimiters, StringSplitOptions.None);
 
             ContactInformation = new StudentContactInformation(parameters[4], parameters[5]);
+
+            // Throws exception if can't parse the graduation year
             int expectedGraduationYear;
             if (int.TryParse(parameters[6], out expectedGraduationYear))
             {
@@ -124,6 +132,7 @@ namespace UniversityPeople.People
             {
                 throw new ArgumentOutOfRangeException("Cannot read graduation year from file");
             }
+            // Course list is reconstructed from comma separated list in file (empty entries removed)
             courseList = new List<string>(parameters[7].Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries));
         
         }
@@ -174,20 +183,33 @@ namespace UniversityPeople.People
         }
 
 
-
+        /// <summary>
+        /// Creates string that is padded for display to list box
+        /// </summary>
+        /// <returns>String</returns>
         public override string ToListBoxString()
         {
-            return $"{ FirstName,12}{LastName,12}{"Student",12}{AcademicDepartment,20}";
+            return base.ToListBoxString("Student");
         }
 
+        /// <summary>
+        /// Creates string that stores information for file storage
+        /// </summary>
+        /// <returns>File string</returns>
         public override string ToFileString()
         {
+            // Courses in list are separated by commas
             return $"S|{FirstName}|{LastName}|{AcademicDepartment}|{ContactInformation.EmailAddress}|{ContactInformation.MailingAddress}|{ExpectedGraduationYear}|{String.Join(",",courseList)}";
         }
 
+        /// <summary>
+        /// String that displays all information for student
+        /// </summary>
+        /// <returns>Information string</returns>
         public override string ToString()
         {
             String infoString = base.ToString() + $"Type: Student \nEmail: {ContactInformation.EmailAddress} \nMailing Address: {ContactInformation.MailingAddress}\nExpected Graduation Year: {ExpectedGraduationYear}\nCourse List:\n";
+            // Adds all courses to string
             for(int i = 0; i<courseList.Count; i++)
             {
                 infoString += courseList[i] + "\n";

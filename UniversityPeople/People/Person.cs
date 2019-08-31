@@ -117,6 +117,10 @@ namespace UniversityPeople.People
             ContactInformation = initialContactInformation;
         }
 
+        /// <summary>
+        /// Helper constructor for subclasses. Reads first 3 parameters common to every person.
+        /// </summary>
+        /// <param name="fromFile">Formatted string containing person type first name, last name, and academic department split by | delimiter</param>
         protected Person(String fromFile)
         {
             // Parse parameters from string with specified delimiter
@@ -132,10 +136,27 @@ namespace UniversityPeople.People
         /// Displays a formatted string for list box
         /// </summary>
         /// <returns>Listbox string</returns>
+        protected virtual string ToListBoxString(String personType)
+        {
+            return String.Format("{0} {1} {2} {3}", FirstName.PadRight(16), LastName.PadRight(16), personType.PadRight(13), AcademicDepartment.PadRight(10));
+        }
+
+        /// <summary>
+        /// Displays a padded list box string
+        /// </summary>
+        /// <returns>String value</returns>
         public abstract String ToListBoxString();
 
+        /// <summary>
+        /// Returns a string that can be written to a file to reconstruct
+        /// </summary>
+        /// <returns>String</returns>
         public abstract String ToFileString();
 
+        /// <summary>
+        /// Displays common information for every person
+        /// </summary>
+        /// <returns>String</returns>
         public override string ToString()
         {
             return $"First Name: {FirstName} \nLast Name: {LastName} \nDepartment: {AcademicDepartment} \n";

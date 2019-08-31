@@ -20,6 +20,7 @@ namespace UniversityPeople.ContactInformations
 
             set
             {
+                // Ensures that a mailing address is set
                 if (String.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Mailing address cannot be empty");
