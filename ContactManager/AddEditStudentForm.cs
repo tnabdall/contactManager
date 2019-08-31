@@ -16,6 +16,8 @@ namespace ContactManager
     {
         public List<string> courseList = new List<string>();
         public Student newStudent = null;
+        private Student editStudent = null;
+        private bool editMode = false;
 
         public AddEditStudentForm()
         {
@@ -24,7 +26,13 @@ namespace ContactManager
 
         public AddEditStudentForm(Student editStudent) : this()
         {
-
+            editMode = true;
+            this.editStudent = editStudent;
+            addButton.Text = "Save";
+            for(int i = 0; i< this.courseList.Count; i++)
+            {
+                courseListListBox.Items.Add(this.courseList[i]);
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -32,30 +40,71 @@ namespace ContactManager
             DialogResult = DialogResult.Cancel;
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (IsValidForm())
+            if (!editMode && IsValidForm())
             {
-                try
+                addNewStudent();
+            }
+            else if(editMode && IsValidForm())
+            {
+                editStudentProperties();
+            }
+            else
+            {
+                MessageBox.Show("Invalid form entries","Error",MessageBoxButtons.OK);
+            }
+        }
+
+        private void addNewStudent()
+        {
+            try
+            {
+                newStudent = new Student(
+                    firstNameTextBox.Text.Trim(),
+                    lastNameTextBox.Text.Trim(),
+                    academicDepartmentTextBox.Text.Trim(),
+                    new StudentContactInformation(emailAddressTextBox.Text.Trim(), mailingAddressTextBox.Text.Trim()),
+                    courseList);
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                DialogResult = DialogResult.Cancel;
+            }
+        }
+
+        private void editStudentProperties()
+        {
+            try
+            {
+                if (editStudent.FirstName != firstNameTextBox.Text.Trim())
                 {
-                    newStudent = new Student(
-                        firstNameTextBox.Text.Trim(),
-                        lastNameTextBox.Text.Trim(),
-                        academicDepartmentTextBox.Text.Trim(),
-                        new StudentContactInformation(emailAddressTextBox.Text.Trim(), mailingAddressTextBox.Text.Trim()),
-                        courseList);
-                    DialogResult = DialogResult.OK;
+                    editStudent.FirstName = firstNameTextBox.Text.Trim();
                 }
-                catch(Exception ex)
+                if (editStudent.LastName != lastNameTextBox.Text.Trim())
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-                    DialogResult = DialogResult.Cancel;
+                    editStudent.LastName = lastNameTextBox.Text.Trim();
                 }
+                if (editStudent.AcademicDepartment != academicDepartmentTextBox.Text.Trim())
+                {
+                    editStudent.AcademicDepartment = academicDepartmentTextBox.Text.Trim();
+                }
+                if (editStudent.ContactInformation.EmailAddress != emailAddressTextBox.Text.Trim())
+                {
+                    editStudent.ContactInformation.EmailAddress = emailAddressTextBox.Text.Trim();
+                }
+                if (((StudentContactInformation)editStudent.ContactInformation).MailingAddress != mailingAddressTextBox.Text.Trim())
+                {
+                    ((StudentContactInformation)editStudent.ContactInformation).MailingAddress = mailingAddressTextBox.Text.Trim();
+                }
+                DialogResult = DialogResult.OK;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error occurred. Please contact Tarik.", MessageBoxButtons.OK);
+                DialogResult = DialogResult.Cancel;
             }
         }
 
@@ -134,12 +183,17 @@ namespace ContactManager
 
         private void AddCourseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GetCourseDialog courseDialog = new GetCourseDialog();
+            GetOneFieldDialog courseDialog = new GetOneFieldDialog("Enter course","Course: ","Add");
             DialogResult result = courseDialog.ShowDialog();
             if(result == DialogResult.OK)
             {
-                courseList.Add(courseDialog.CourseName);
-                courseListListBox.Items.Add(courseDialog.CourseName);
+                if (editMode)
+                {
+                    editStudent.AddCourse(courseDialog.Value);
+                }
+                courseList.Add(courseDialog.Value);
+                courseListListBox.Items.Add(courseDialog.Value);
+                
             }
             
         }
@@ -152,14 +206,27 @@ namespace ContactManager
                 MessageBox.Show("Must select a course to remove first.", "Error", MessageBoxButtons.OK);
             }
             else
-            {                
-                courseList.Remove(courseListListBox.Items[selectedIndex].ToString());
+            {               
+                
+                if (editMode)
+                {
+                    if (!editStudent.TryRemoveAtCourse(selectedIndex))
+                    {
+                        MessageBox.Show("Unable to remove course from student's file.");
+                        return;
+                    }
+                }
+                courseList.RemoveAt(selectedIndex);
                 courseListListBox.Items.RemoveAt(selectedIndex);
             }
         }
 
         private void RemoveAllCoursesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (editMode)
+            {
+                editStudent.RemoveAllCourses();
+            }
             courseList.Clear();
             courseListListBox.Items.Clear();
         }

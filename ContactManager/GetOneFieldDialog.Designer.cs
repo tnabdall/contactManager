@@ -1,6 +1,6 @@
 ﻿namespace ContactManager
 {
-    partial class GetCourseDialog
+    partial class GetOneFieldDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,37 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.courseNameTextBox = new System.Windows.Forms.TextBox();
-            this.addButton = new System.Windows.Forms.Button();
+            this.valueLabel = new System.Windows.Forms.Label();
+            this.valueTextBox = new System.Windows.Forms.TextBox();
+            this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // valueLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Course Name:";
+            this.valueLabel.AutoSize = true;
+            this.valueLabel.Location = new System.Drawing.Point(21, 31);
+            this.valueLabel.Name = "valueLabel";
+            this.valueLabel.Size = new System.Drawing.Size(82, 17);
+            this.valueLabel.TabIndex = 0;
+            this.valueLabel.Text = "Enter Value";
             // 
-            // courseNameTextBox
+            // valueTextBox
             // 
-            this.courseNameTextBox.Location = new System.Drawing.Point(142, 31);
-            this.courseNameTextBox.Name = "courseNameTextBox";
-            this.courseNameTextBox.Size = new System.Drawing.Size(258, 22);
-            this.courseNameTextBox.TabIndex = 1;
+            this.valueTextBox.Location = new System.Drawing.Point(142, 31);
+            this.valueTextBox.Name = "valueTextBox";
+            this.valueTextBox.Size = new System.Drawing.Size(258, 22);
+            this.valueTextBox.TabIndex = 1;
+            this.valueTextBox.TextChanged += new System.EventHandler(this.ValueTextBox_TextChanged);
             // 
-            // addButton
+            // okButton
             // 
-            this.addButton.Location = new System.Drawing.Point(231, 84);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 2;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.okButton.Location = new System.Drawing.Point(231, 84);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 2;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -70,19 +71,19 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // GetCourseDialog
+            // GetOneFieldDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 119);
             this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.addButton);
-            this.Controls.Add(this.courseNameTextBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.valueTextBox);
+            this.Controls.Add(this.valueLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "GetCourseDialog";
+            this.Name = "GetOneFieldDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Enter the new course";
+            this.Text = "Enter value";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,9 +91,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox courseNameTextBox;
-        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Label valueLabel;
+        private System.Windows.Forms.TextBox valueTextBox;
+        private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
     }
 }

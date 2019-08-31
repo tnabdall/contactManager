@@ -42,7 +42,6 @@
             this.mailingAddressTextBox = new System.Windows.Forms.TextBox();
             this.addButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.expectedGraduationYearTextBox = new System.Windows.Forms.TextBox();
             this.expectedGraduationYearLabel = new System.Windows.Forms.Label();
             this.courseListLabel = new System.Windows.Forms.Label();
@@ -51,7 +50,7 @@
             this.addCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAllCoursesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.courseListHelpLabel = new System.Windows.Forms.Label();
+            this.courseListToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.courseListContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,17 +168,6 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(469, 449);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Visible = false;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
             // expectedGraduationYearTextBox
             // 
             this.expectedGraduationYearTextBox.Location = new System.Drawing.Point(238, 215);
@@ -215,6 +203,7 @@
             this.courseListListBox.Name = "courseListListBox";
             this.courseListListBox.Size = new System.Drawing.Size(410, 164);
             this.courseListListBox.TabIndex = 2;
+            this.courseListToolTip.SetToolTip(this.courseListListBox, "Right click to add/remove courses");
             this.courseListListBox.SelectedIndexChanged += new System.EventHandler(this.CourseListListBox_SelectedIndexChanged);
             // 
             // courseListContextMenuStrip
@@ -248,24 +237,12 @@
             this.removeAllCoursesToolStripMenuItem.Text = "Remove All Courses";
             this.removeAllCoursesToolStripMenuItem.Click += new System.EventHandler(this.RemoveAllCoursesToolStripMenuItem_Click);
             // 
-            // courseListHelpLabel
-            // 
-            this.courseListHelpLabel.AutoSize = true;
-            this.courseListHelpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.courseListHelpLabel.Location = new System.Drawing.Point(238, 420);
-            this.courseListHelpLabel.Name = "courseListHelpLabel";
-            this.courseListHelpLabel.Size = new System.Drawing.Size(328, 17);
-            this.courseListHelpLabel.TabIndex = 5;
-            this.courseListHelpLabel.Text = "Right click on course list to bring up options";
-            // 
             // AddEditStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 484);
-            this.Controls.Add(this.courseListHelpLabel);
             this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.courseListListBox);
             this.Controls.Add(this.expectedGraduationYearTextBox);
@@ -307,7 +284,6 @@
         private System.Windows.Forms.TextBox mailingAddressTextBox;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.TextBox expectedGraduationYearTextBox;
         private System.Windows.Forms.Label expectedGraduationYearLabel;
         private System.Windows.Forms.Label courseListLabel;
@@ -316,6 +292,6 @@
         private System.Windows.Forms.ToolStripMenuItem addCourseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeCourseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeAllCoursesToolStripMenuItem;
-        private System.Windows.Forms.Label courseListHelpLabel;
+        private System.Windows.Forms.ToolTip courseListToolTip;
     }
 }

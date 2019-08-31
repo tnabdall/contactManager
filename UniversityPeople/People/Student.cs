@@ -108,6 +108,24 @@ namespace UniversityPeople.People
         }
 
         /// <summary>
+        /// Removes course at selected index
+        /// </summary>
+        /// <param name="index">Index to remove</param>
+        /// <returns>Whether course removal was successful</returns>
+        public bool TryRemoveAtCourse(int index)
+        {
+            try
+            {
+                courseList.RemoveAt(index);
+                return true;
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Removes all courses for this student
         /// </summary>
         public void RemoveAllCourses()
