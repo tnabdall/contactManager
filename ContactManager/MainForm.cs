@@ -46,11 +46,18 @@ namespace ContactManager
             // Prompt for user to save form if there has been any changes
             if (!fileSavedSinceLastChange)
             {
-                DialogResult result = MessageBox.Show("Would you like to save before closing?","Confirm Exit",MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("There are unsaved changes. Would you like to save before exiting the program?","Confirm Exit",MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
-                    bool userSavedFile = SaveFile(true);
-                    if (!userSavedFile) { return; } // If user requested to save file but didn't save file, cancel exit request
+                    bool userSavedFile = SaveFile(true); // Save as prompt
+                    if (!userSavedFile)
+                    { // If user requested to save file but didn't save file, cancel exit request
+                        return;
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
                 }
                 else if (result == DialogResult.Cancel)
                 {
@@ -58,10 +65,11 @@ namespace ContactManager
                 }
                 else // They chose No
                 {
+                    Application.Exit();
                     // Continue to exit
                 }
             }
-            Application.Exit(); 
+             
         }
 
         /// <summary>
