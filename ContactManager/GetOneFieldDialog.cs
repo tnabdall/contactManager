@@ -13,20 +13,25 @@ namespace ContactManager
 
     public partial class GetOneFieldDialog : Form
     {
-        /// <summary>
-        /// Holds value that is being requested
-        /// </summary>
-        public String Value = null;
+        
+        public String Value {
+            get
+            {
+                return value;
+            }
+        }
 
         /// <summary>
         /// Holds validation function that takes Textbox and returns bool. Default is to ensure field is not null or empty.
         /// </summary>
-        public Func<TextBox, bool> ValidationFunc = null;
+        private Func<TextBox, bool> validationFunc = null;
 
         /// <summary>
         /// Holds validation message if validation conditions are not met.
         /// </summary>
-        public String ValidationMessage = "Field is not valid.";
+        private String validationMessage = "Field is not valid.";
+
+        private String value = null;
 
         /// <summary>
         /// Creates dialog. Not to be used.
@@ -51,12 +56,12 @@ namespace ContactManager
             // If no funciton provided, default to not empty or null
             if (validationFunc == null)
             {
-                ValidationFunc = Validation.IsNotEmptyOrNull;
-                ValidationMessage = "Must enter a value.";
+                this.validationFunc = Validation.IsNotEmptyOrNull;
+                validationMessage = "Must enter a value.";
             }
             else
             {
-                ValidationFunc = validationFunc;
+                this.validationFunc = validationFunc;
             }
             okButton.Text = okButtonText;
             cancelButton.Text = cancelButtonText;
@@ -69,14 +74,14 @@ namespace ContactManager
         /// <param name="e"></param>
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (ValidationFunc(valueTextBox))
+            if (validationFunc(valueTextBox))
             {
-                Value = valueTextBox.Text.Trim();
+                value = valueTextBox.Text.Trim();
                 DialogResult = DialogResult.OK;
             }
             else
             { // Display validation message if invalid
-                MessageBox.Show(ValidationMessage, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(validationMessage, "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -97,7 +102,7 @@ namespace ContactManager
         /// <param name="e"></param>
         private void ValueTextBox_TextChanged(object sender, EventArgs e)
         {
-            Validation.ColorTextBoxValidation(valueTextBox, ValidationFunc);
+            Validation.ColorTextBoxValidation(valueTextBox, validationFunc);
         }
     }
 }

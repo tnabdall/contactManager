@@ -16,27 +16,44 @@ namespace ContactManager
         /// <summary>
         /// Holds the first value to be returned
         /// </summary>
-        public String Value1 = null;
+        public String Value1
+        {
+            get
+            {
+                return value1;
+            }
+        }
+       
         
-        /// <summary>
-        /// Holds the validation function (input Textbox, output bool) for the first value
-        /// </summary>
-        public Func<TextBox, bool> ValidationFunc1 = null;
 
         /// <summary>
         /// Holds the second value to be returned
         /// </summary>
-        public String Value2 = null;
+        public String Value2
+        {
+            get
+            {
+                return value2;
+            }
+        }
+
+        /// <summary>
+        /// Holds the validation function (input Textbox, output bool) for the first value
+        /// </summary>
+        private Func<TextBox, bool> validationFunc1 = null;
 
         /// <summary>
         /// Holds the validation function (input Textbox, output bool) for the second value
         /// </summary>
-        public Func<TextBox, bool> ValidationFunc2 = null;
+        private Func<TextBox, bool> validationFunc2 = null;
 
         /// <summary>
         /// Validation message if form validation fails
         /// </summary>
-        public String ValidationMessage = "One or both fields are not valid.";
+        private String validationMessage = "One or both fields are not valid.";
+
+        private String value1 = null;
+        private String value2 = null;
 
         /// <summary>
         /// Default constructor by VS, not to be used
@@ -64,19 +81,19 @@ namespace ContactManager
             // Sets validation functions to not empty or null if not specified
             if (validationFunc1 == null)
             {
-                ValidationFunc1 = Validation.IsNotEmptyOrNull;
+                this.validationFunc1 = Validation.IsNotEmptyOrNull;
             }
             else
             {
-                ValidationFunc1 = validationFunc1;
+                this.validationFunc1 = validationFunc1;
             }
             if(validationFunc2 == null)
             {
-                ValidationFunc2 = Validation.IsNotEmptyOrNull;
+                this.validationFunc2 = Validation.IsNotEmptyOrNull;
             }
             else
             {
-                ValidationFunc2 = validationFunc2;
+                this.validationFunc2 = validationFunc2;
             }
             okButton.Text = okButtonText;
             cancelButton.Text = cancelButtonText;
@@ -90,15 +107,15 @@ namespace ContactManager
         private void OkButton_Click(object sender, EventArgs e)
         {
             // Validates both fields before sending OK dialog result
-            if (ValidationFunc1(value1TextBox) && ValidationFunc2(value2TextBox))
+            if (validationFunc1(value1TextBox) && validationFunc2(value2TextBox))
             {
-                Value1 = value1TextBox.Text.Trim();
-                Value2 = value2TextBox.Text.Trim();
+                value1 = value1TextBox.Text.Trim();
+                value2 = value2TextBox.Text.Trim();
                 DialogResult = DialogResult.OK;
             }
             else
             { // Shows error message
-                MessageBox.Show(ValidationMessage, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(validationMessage, "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -119,7 +136,7 @@ namespace ContactManager
         /// <param name="e"></param>
         private void Value1TextBox_TextChanged(object sender, EventArgs e)
         {
-            Validation.ColorTextBoxValidation(value1TextBox, ValidationFunc1);
+            Validation.ColorTextBoxValidation(value1TextBox, validationFunc1);
         }
 
         /// <summary>
@@ -129,7 +146,7 @@ namespace ContactManager
         /// <param name="e"></param>
         private void Value2TextBox_TextChanged(object sender, EventArgs e)
         {
-            Validation.ColorTextBoxValidation(value2TextBox, ValidationFunc2);
+            Validation.ColorTextBoxValidation(value2TextBox, validationFunc2);
         }
     }
 }

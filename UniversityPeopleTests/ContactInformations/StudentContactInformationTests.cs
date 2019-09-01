@@ -76,7 +76,7 @@ namespace UniversityPeople.ContactInformations.Tests
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void StudentContactInformation_NoMailingAddress()
         {
             //Arrange

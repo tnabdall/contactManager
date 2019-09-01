@@ -23,7 +23,7 @@ namespace UniversityPeople.ContactInformations
                 // Ensures that a mailing address is set
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("Mailing address cannot be empty");
+                    throw new ArgumentException("Mailing address cannot be empty");
                 }
                 else
                 {

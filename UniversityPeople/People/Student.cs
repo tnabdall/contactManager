@@ -143,6 +143,10 @@ namespace UniversityPeople.People
         /// <param name="course">Course to be added</param>
         public void AddCourse(String course)
         {
+            if (String.IsNullOrEmpty(course)) // Can't add an empty course
+            {
+                throw new ArgumentException("Cannot add an empty course.");
+            }
             courseList.Add(course);
         }
 
