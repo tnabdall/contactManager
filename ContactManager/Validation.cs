@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace ContactManager
 {
+    /// <summary>
+    /// Contains methods to validate textboxes in windows forms
+    /// </summary>
     public static class Validation
     {
 

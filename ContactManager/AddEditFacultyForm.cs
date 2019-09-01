@@ -38,7 +38,7 @@ namespace ContactManager
         {
             if (editFaculty == null)
             {
-                throw new ArgumentException("Cannot edit null faculty");
+                throw new ArgumentNullException("Cannot edit null faculty");
             }
             // Program is in edit mode. Store reference to faculty member.
             editMode = true;
@@ -107,6 +107,7 @@ namespace ContactManager
         /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
+            // Ensures form is valid before processing add/edit
             if (IsValidForm())
             {
                 if (editMode)
@@ -117,10 +118,6 @@ namespace ContactManager
                 {
                     addNewFaculty();
                 }                
-            }
-            else
-            {
-                MessageBox.Show("Invalid form entries", "Error", MessageBoxButtons.OK);
             }
         }
 

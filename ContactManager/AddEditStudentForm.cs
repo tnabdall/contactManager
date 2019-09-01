@@ -14,22 +14,41 @@ namespace ContactManager
 {
     public partial class AddEditStudentForm : Form
     {
-        private List<string> newCourseList = new List<string>();
+        /// <summary>
+        /// Holds new student reference
+        /// </summary>
         public Student newStudent = null;
-        private Student editStudent = null;
-        private bool editMode = false;
 
+        private List<string> newCourseList = new List<string>(); // Course list to be set for new or edited student     
+        private Student editStudent = null; // Stores edit student reference
+        private bool editMode = false; // Lets form know we are in edit mode
+
+        /// <summary>
+        /// Creates form to add a new student
+        /// </summary>
         public AddEditStudentForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Creates form to edit a student
+        /// </summary>
+        /// <param name="editStudent"></param>
         public AddEditStudentForm(Student editStudent) : this()
         {
+            if (editStudent == null)
+            {
+                throw new ArgumentNullException("Must supply a student");
+            }
+
+            // Sets edit mode, stores references for student
             editMode = true;
             this.editStudent = editStudent;
             newCourseList = editStudent.CourseList; // Deep copy list
-            addButton.Text = "Save";
+            addButton.Text = "Save"; // Add button becomes save button
+
+            // Populates all fields on form with editing student's current fields
             for(int i = 0; i< this.newCourseList.Count; i++)
             {
                 courseListListBox.Items.Add(this.newCourseList[i]);
@@ -43,13 +62,24 @@ namespace ContactManager
 
         }
 
+        /// <summary>
+        /// Sends a cancel result to main form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
+        /// <summary>
+        /// Processes add/save action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
+            // Ensures form is valid before processing add/edit student
             if (!editMode && IsValidForm())
             {
                 addNewStudent();
@@ -58,16 +88,16 @@ namespace ContactManager
             {
                 editStudentProperties();
             }
-            else
-            {
-                MessageBox.Show("Invalid form entries","Error",MessageBoxButtons.OK);
-            }
         }
 
+        /// <summary>
+        /// Adds new studnet to newStudent reference in form
+        /// </summary>
         private void addNewStudent()
         {
             try
             {
+                // Try to create new student. Should pass as form is validated.
                 newStudent = new Student(
                     firstNameTextBox.Text.Trim(),
                     lastNameTextBox.Text.Trim(),
@@ -83,10 +113,14 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Edits the student properties to the ones on the form
+        /// </summary>
         private void editStudentProperties()
         {
             try
             {
+                // Sets student's properties to new values if they have been changed
                 if (editStudent.FirstName != firstNameTextBox.Text.Trim())
                 {
                     editStudent.FirstName = firstNameTextBox.Text.Trim();
@@ -107,12 +141,13 @@ namespace ContactManager
                 {
                     editStudent.ContactInformation.MailingAddress = mailingAddressTextBox.Text.Trim();
                 }
-                int year;
+                // Assigns graduation year if not changed
+                int year; 
                 if(int.TryParse(expectedGraduationYearTextBox.Text.Trim(),out year) && editStudent.ExpectedGraduationYear != year)
                 {
                     editStudent.ExpectedGraduationYear = year;
                 }
-                editStudent.CourseList = newCourseList;
+                editStudent.CourseList = newCourseList; // Setter deep copies list
                 DialogResult = DialogResult.OK;
             }
             catch(Exception ex)
@@ -122,6 +157,10 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Checks if form entries are valid
+        /// </summary>
+        /// <returns>Yes/No</returns>
         private bool IsValidForm()
         {
             String message = "";
@@ -160,31 +199,61 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Colors first name according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FirstNameTextBox_TextChanged(object sender, EventArgs e)
         {
             Validation.ColorTextBoxValidation(firstNameTextBox, Validation.IsNotEmptyOrNull);
         }
 
+        /// <summary>
+        /// Colors last name according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LastNameTextBox_TextChanged(object sender, EventArgs e)
         {
             Validation.ColorTextBoxValidation(lastNameTextBox, Validation.IsNotEmptyOrNull);
         }
 
+        /// <summary>
+        /// Colors department according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AcademicDepartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             Validation.ColorTextBoxValidation(academicDepartmentTextBox, Validation.IsNotEmptyOrNull);
         }
 
+        /// <summary>
+        /// Colors email according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EmailAddressTextBox_TextChanged(object sender, EventArgs e)
         {
             Validation.ColorTextBoxValidation(emailAddressTextBox, Validation.IsValidEmail);
         }
 
+        /// <summary>
+        /// Colors mailing address according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MailingAddressTextBox_TextChanged(object sender, EventArgs e)
         {
             Validation.ColorTextBoxValidation(mailingAddressTextBox, Validation.IsNotEmptyOrNull);
         }
 
+        /// <summary>
+        /// Colors graduation year according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExpectedGraduationYearTextBox_TextChanged(object sender, EventArgs e)
         {
             Validation.ColorTextBoxValidation(expectedGraduationYearTextBox, Validation.IsGreaterThanOrEqualToCurrentYear);
@@ -195,10 +264,17 @@ namespace ContactManager
 
         }
 
+        /// <summary>
+        /// Creates a dialog to add a new course to the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddCourseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Sets general dialog properties to enter a new course
             GetOneFieldDialog courseDialog = new GetOneFieldDialog("Enter course","Course: ","Add");
             DialogResult result = courseDialog.ShowDialog();
+            // Adds to the list if result is ok
             if(result == DialogResult.OK)
             { 
                 newCourseList.Add(courseDialog.Value);
@@ -207,8 +283,14 @@ namespace ContactManager
             
         }
 
+        /// <summary>
+        /// Removes selected course from the course list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveCourseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Checks that a course is selected, then removes it
             int selectedIndex = courseListListBox.SelectedIndex;
             if (selectedIndex == -1)
             {
@@ -221,6 +303,11 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Clears all courses from course list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveAllCoursesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newCourseList.Clear();
