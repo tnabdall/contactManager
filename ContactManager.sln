@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManager", "ContactManager\ContactManager.csproj", "{827755A1-8673-4B1D-8DBB-EF76B44C1A78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityPeople", "UniversityPeople\UniversityPeople.csproj", "{5FFCA520-7974-491C-A381-8D3E512A3D75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityPeopleTests", "UniversityPeopleTests\UniversityPeopleTests.csproj", "{4FC78FA8-93A5-4706-A6E4-255085286497}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5FFCA520-7974-491C-A381-8D3E512A3D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FFCA520-7974-491C-A381-8D3E512A3D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FFCA520-7974-491C-A381-8D3E512A3D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC78FA8-93A5-4706-A6E4-255085286497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC78FA8-93A5-4706-A6E4-255085286497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC78FA8-93A5-4706-A6E4-255085286497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC78FA8-93A5-4706-A6E4-255085286497}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
