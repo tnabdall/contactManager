@@ -144,10 +144,12 @@
             this.contactsListBox.ItemHeight = 20;
             this.contactsListBox.Location = new System.Drawing.Point(12, 79);
             this.contactsListBox.Name = "contactsListBox";
+            this.contactsListBox.ScrollAlwaysVisible = true;
             this.contactsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.contactsListBox.Size = new System.Drawing.Size(581, 344);
             this.contactsListBox.TabIndex = 1;
             this.contactsListBoxToolTip.SetToolTip(this.contactsListBox, "Right click to view/modify contacts");
+            this.contactsListBox.DoubleClick += new System.EventHandler(this.ContactDetailsToolStripMenuItem_Click);
             // 
             // contactsListBoxContextMenuStrip
             // 

@@ -160,6 +160,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(573, 449);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -202,6 +203,7 @@
             this.courseListListBox.ItemHeight = 20;
             this.courseListListBox.Location = new System.Drawing.Point(238, 249);
             this.courseListListBox.Name = "courseListListBox";
+            this.courseListListBox.ScrollAlwaysVisible = true;
             this.courseListListBox.Size = new System.Drawing.Size(410, 164);
             this.courseListListBox.TabIndex = 7;
             this.courseListToolTip.SetToolTip(this.courseListListBox, "Right click to add/remove courses");
