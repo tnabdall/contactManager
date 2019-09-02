@@ -105,8 +105,7 @@ namespace ContactManager
             // If user successfully entered required info, add faculty and flip file save flag
             if (result == DialogResult.OK)
             {
-                contactsList.Add(facultyForm.NewFaculty);
-                contactsListBox.Items.Add(facultyForm.NewFaculty.ToListBoxString());
+                AddContactToList(facultyForm.NewFaculty);
                 fileSavedSinceLastChange = false;
             }
         }
@@ -124,8 +123,7 @@ namespace ContactManager
             // If user successfully entered required info, add student and flip file save flag
             if (result == DialogResult.OK)
             {
-                contactsList.Add(studentForm.newStudent);
-                contactsListBox.Items.Add(studentForm.newStudent.ToListBoxString());
+                AddContactToList(studentForm.newStudent);
                 fileSavedSinceLastChange = false;
             }
         }
@@ -541,8 +539,7 @@ namespace ContactManager
                     // If new person created successfully, add them to the list
                     if (newPerson != null)
                     {
-                        contactsList.Add(newPerson);
-                        contactsListBox.Items.Add(newPerson.ToListBoxString());
+                        AddContactToList(newPerson);
                     }
                 }
                 if (lineReadIssues)
@@ -563,6 +560,12 @@ namespace ContactManager
                 return false;
             }
 
+        }
+
+        private void AddContactToList(Person contact)
+        {
+            contactsList.Add(contact);
+            contactsListBox.Items.Add(contact.ToListBoxString());
         }
 
         

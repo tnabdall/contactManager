@@ -216,7 +216,7 @@ namespace UniversityPeople.People
             // Adds all courses to string
             for(int i = 0; i<courseList.Count; i++)
             {
-                infoString += courseList[i] + "\n";
+                infoString += $"\t{courseList[i]}\n";
             }
             return infoString;
 

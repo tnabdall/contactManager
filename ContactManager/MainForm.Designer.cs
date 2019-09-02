@@ -64,7 +64,7 @@
             this.helpToolStripMenuItem});
             this.mainFormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainFormMenuStrip.Name = "mainFormMenuStrip";
-            this.mainFormMenuStrip.Size = new System.Drawing.Size(605, 28);
+            this.mainFormMenuStrip.Size = new System.Drawing.Size(639, 28);
             this.mainFormMenuStrip.TabIndex = 0;
             this.mainFormMenuStrip.Text = "menuStrip1";
             // 
@@ -146,7 +146,7 @@
             this.contactsListBox.Name = "contactsListBox";
             this.contactsListBox.ScrollAlwaysVisible = true;
             this.contactsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.contactsListBox.Size = new System.Drawing.Size(581, 344);
+            this.contactsListBox.Size = new System.Drawing.Size(615, 344);
             this.contactsListBox.TabIndex = 1;
             this.contactsListBoxToolTip.SetToolTip(this.contactsListBox, "Right click to view/modify contacts");
             this.contactsListBox.DoubleClick += new System.EventHandler(this.ContactDetailsToolStripMenuItem_Click);
@@ -245,7 +245,7 @@
             this.contactsListBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactsListBoxLabel.Location = new System.Drawing.Point(12, 43);
             this.contactsListBoxLabel.Name = "contactsListBoxLabel";
-            this.contactsListBoxLabel.Size = new System.Drawing.Size(581, 23);
+            this.contactsListBoxLabel.Size = new System.Drawing.Size(615, 23);
             this.contactsListBoxLabel.TabIndex = 2;
             this.contactsListBoxLabel.Text = "First Name             Last Name             Type                Department";
             // 
@@ -253,7 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 450);
+            this.ClientSize = new System.Drawing.Size(639, 450);
             this.Controls.Add(this.contactsListBoxLabel);
             this.Controls.Add(this.contactsListBox);
             this.Controls.Add(this.mainFormMenuStrip);
