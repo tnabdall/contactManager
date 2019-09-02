@@ -528,6 +528,11 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Handles form close request. Prompts user to confirm exit if they have not saved.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Prompt for user to save form if there has been any changes
