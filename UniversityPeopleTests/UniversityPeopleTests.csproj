@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ContactInformations\FacultyContactInformationTests.cs" />
     <Compile Include="ContactInformations\StudentContactInformationTests.cs" />
+    <Compile Include="People\FacultyTests.cs" />
     <Compile Include="People\StudentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

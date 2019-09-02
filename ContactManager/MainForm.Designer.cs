@@ -64,7 +64,7 @@
             this.helpToolStripMenuItem});
             this.mainFormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainFormMenuStrip.Name = "mainFormMenuStrip";
-            this.mainFormMenuStrip.Size = new System.Drawing.Size(605, 30);
+            this.mainFormMenuStrip.Size = new System.Drawing.Size(605, 28);
             this.mainFormMenuStrip.TabIndex = 0;
             this.mainFormMenuStrip.Text = "menuStrip1";
             // 
@@ -77,14 +77,14 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.openToolStripMenuItem.Text = "Open ...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
@@ -92,7 +92,7 @@
             // 
             this.saveContactsToolStripMenuItem.Name = "saveContactsToolStripMenuItem";
             this.saveContactsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveContactsToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.saveContactsToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.saveContactsToolStripMenuItem.Text = "Save Contacts";
             this.saveContactsToolStripMenuItem.Click += new System.EventHandler(this.SaveContactsToolStripMenuItem_Click);
             // 
@@ -101,20 +101,20 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.saveAsToolStripMenuItem.Text = "Save As ...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(243, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(235, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -123,13 +123,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.aboutToolStripMenuItem.Text = "About ...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -180,14 +180,14 @@
             // facultyToolStripMenuItem
             // 
             this.facultyToolStripMenuItem.Name = "facultyToolStripMenuItem";
-            this.facultyToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
+            this.facultyToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.facultyToolStripMenuItem.Text = "Faculty";
             this.facultyToolStripMenuItem.Click += new System.EventHandler(this.FacultyToolStripMenuItem_Click);
             // 
             // studentToolStripMenuItem
             // 
             this.studentToolStripMenuItem.Name = "studentToolStripMenuItem";
-            this.studentToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
+            this.studentToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.studentToolStripMenuItem.Text = "Student";
             this.studentToolStripMenuItem.Click += new System.EventHandler(this.StudentToolStripMenuItem_Click);
             // 
@@ -212,27 +212,27 @@
             this.lastNameToolStripMenuItem,
             this.firstAndLastNameToolStripMenuItem});
             this.searchForToolStripMenuItem.Name = "searchForToolStripMenuItem";
-            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(192, 24);
             this.searchForToolStripMenuItem.Text = "Search For";
             // 
             // firstNameToolStripMenuItem
             // 
             this.firstNameToolStripMenuItem.Name = "firstNameToolStripMenuItem";
-            this.firstNameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.firstNameToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.firstNameToolStripMenuItem.Text = "First Name";
             this.firstNameToolStripMenuItem.Click += new System.EventHandler(this.FirstNameToolStripMenuItem_Click);
             // 
             // lastNameToolStripMenuItem
             // 
             this.lastNameToolStripMenuItem.Name = "lastNameToolStripMenuItem";
-            this.lastNameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.lastNameToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.lastNameToolStripMenuItem.Text = "Last Name";
             this.lastNameToolStripMenuItem.Click += new System.EventHandler(this.LastNameToolStripMenuItem_Click);
             // 
             // firstAndLastNameToolStripMenuItem
             // 
             this.firstAndLastNameToolStripMenuItem.Name = "firstAndLastNameToolStripMenuItem";
-            this.firstAndLastNameToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.firstAndLastNameToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.firstAndLastNameToolStripMenuItem.Text = "First and Last Name";
             this.firstAndLastNameToolStripMenuItem.Click += new System.EventHandler(this.FirstAndLastNameToolStripMenuItem_Click);
             // 
@@ -255,10 +255,13 @@
             this.Controls.Add(this.contactsListBoxLabel);
             this.Controls.Add(this.contactsListBox);
             this.Controls.Add(this.mainFormMenuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.mainFormMenuStrip;
             this.MinimumSize = new System.Drawing.Size(623, 47);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contact Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.mainFormMenuStrip.ResumeLayout(false);
             this.mainFormMenuStrip.PerformLayout();
             this.contactsListBoxContextMenuStrip.ResumeLayout(false);

@@ -27,6 +27,7 @@ namespace ContactManager
 
         private String Filepath = null; // Holds filepath, null means no file loaded or saved yet
         private bool fileSavedSinceLastChange = true; // Lets us know if the file was saved since last change
+        private bool exitByMenuButton = false; // Lets form closing event know if exit from menu was pressed
 
         /// <summary>
         /// Creates form
@@ -56,6 +57,7 @@ namespace ContactManager
                     }
                     else
                     {
+                        exitByMenuButton = true;
                         Application.Exit();
                     }
                 }
@@ -65,7 +67,8 @@ namespace ContactManager
                 }
                 else // They chose No
                 {
-                    Application.Exit();
+                    exitByMenuButton = true;
+                    Application.Exit();                    
                     // Continue to exit
                 }
             }
@@ -168,6 +171,7 @@ namespace ContactManager
                     contactsList.RemoveAt(selectedIndices[i]);
                     contactsListBox.Items.RemoveAt(selectedIndices[i]);
                 }
+                fileSavedSinceLastChange = false;
             }
             else
             {
@@ -520,6 +524,36 @@ namespace ContactManager
                     {
                         contactsListBox.SetSelected(i, false);
                     }
+                }
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Prompt for user to save form if there has been any changes
+            // and they did not exit by menu button
+            if (!exitByMenuButton && !fileSavedSinceLastChange)
+            {
+                DialogResult result = MessageBox.Show("There are unsaved changes. Would you like to save before exiting the program?", "Confirm Exit", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    bool userSavedFile = SaveFile(true); // Save as prompt
+                    if (!userSavedFile)
+                    { // If user requested to save file but didn't save file, cancel exit request
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        e.Cancel = false; // Continue to close
+                    }
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true; ; // Cancel exit request
+                }
+                else
+                {
+                    e.Cancel = false;  // Continue to close
                 }
             }
         }

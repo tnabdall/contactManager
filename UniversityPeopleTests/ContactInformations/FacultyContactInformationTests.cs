@@ -17,7 +17,7 @@ namespace UniversityPeople.ContactInformations.Tests
             //Arrange
             String emailAddress = "bob@gmail.com";
             String buildingLocation = "MC 206";
-            
+
             //Act
             FacultyContactInformation contactInformation = new FacultyContactInformation(emailAddress, buildingLocation);
 
@@ -75,6 +75,5 @@ namespace UniversityPeople.ContactInformations.Tests
 
         }
 
-        
     }
 }
