@@ -43,5 +43,14 @@ namespace UniversityPeople.ContactInformations
         {
             MailingAddress = initialMailingAddress;
         }
+
+        /// <summary>
+        /// String with all student contact information
+        /// </summary>
+        /// <returns>Formatted string</returns>
+        public override string ToString()
+        {
+            return base.ToString()+$"\n Mailing Address: {mailingAddress}";
+        }
     }
 }

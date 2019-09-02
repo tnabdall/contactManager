@@ -46,7 +46,8 @@ namespace ContactManager
             editMode = true;
             this.editStudent = editStudent;
             newCourseList = editStudent.CourseList; // Deep copy list
-            addButton.Text = "Save"; // Add button becomes save button
+            addButton.Text = "Update"; // Add button becomes update button
+            this.Text = "Edit Student Form"; // Title changed
 
             // Populates all fields on form with editing student's current fields
             for(int i = 0; i< this.newCourseList.Count; i++)

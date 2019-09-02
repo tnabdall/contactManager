@@ -72,6 +72,11 @@ namespace ContactManager
                     // Continue to exit
                 }
             }
+            else // No changes so no need to confirm exit
+            {
+                exitByMenuButton = true;
+                Application.Exit();
+            }
              
         }
 

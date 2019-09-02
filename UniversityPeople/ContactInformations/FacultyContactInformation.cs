@@ -22,5 +22,21 @@ namespace UniversityPeople.ContactInformations
         {
             BuildingLocation = initialBuildingLocation;
         }
+
+        /// <summary>
+        /// Returns string with all available contact information
+        /// </summary>
+        /// <returns>Formatted string</returns>
+        public override string ToString()
+        {
+            if (String.IsNullOrEmpty(BuildingLocation))
+            {
+                return base.ToString() + $"\n Building Location: None";
+            }
+            else
+            {
+                return base.ToString() + $"\n Building Location: {BuildingLocation}";
+            }
+        }
     }
 }

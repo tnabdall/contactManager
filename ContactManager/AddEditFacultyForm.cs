@@ -43,7 +43,8 @@ namespace ContactManager
             // Program is in edit mode. Store reference to faculty member.
             editMode = true;
             this.editFaculty = editFaculty;
-            addButton.Text = "Save"; // Add button becomes save
+            addButton.Text = "Update"; // Add button becomes update
+            this.Text = "Edit Faculty Form"; // Title changed
 
             // Populates all fields with faculty member information
             firstNameTextBox.Text = editFaculty.FirstName;

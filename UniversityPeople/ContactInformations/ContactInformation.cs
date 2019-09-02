@@ -43,5 +43,14 @@ namespace UniversityPeople.ContactInformations
         {
             EmailAddress = initialEmailAddress;
         }
+
+        /// <summary>
+        /// Returns information in formatted string
+        /// </summary>
+        /// <returns>String</returns>
+        public override string ToString()
+        {
+            return $"Email Address: {EmailAddress}";
+        }
     }
 }
