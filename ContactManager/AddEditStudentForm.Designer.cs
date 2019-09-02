@@ -207,7 +207,6 @@
             this.courseListListBox.Size = new System.Drawing.Size(410, 164);
             this.courseListListBox.TabIndex = 7;
             this.courseListToolTip.SetToolTip(this.courseListListBox, "Right click to add/remove courses");
-            this.courseListListBox.SelectedIndexChanged += new System.EventHandler(this.CourseListListBox_SelectedIndexChanged);
             // 
             // courseListContextMenuStrip
             // 

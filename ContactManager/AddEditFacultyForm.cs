@@ -54,6 +54,91 @@ namespace ContactManager
             officeLocationBuildingTextBox.Text = editFaculty.ContactInformation.BuildingLocation;            
         }
 
+        
+
+        /// <summary>
+        /// Sends a cancel result to main form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        /// <summary>
+        /// Processes add/save button click to add/edit faculty member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            // Ensures form is valid before processing add/edit
+            if (IsValidForm())
+            {
+                if (editMode)
+                {
+                    editFacultyProperties();
+                }
+                else // Not editing
+                {
+                    addNewFaculty();
+                }                
+            }
+        }
+
+        
+
+        /// <summary>
+        /// Colors first name according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FirstNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Validation.ColorTextBoxValidation(firstNameTextBox, Validation.IsNotEmptyOrNull);
+        }
+
+        /// <summary>
+        /// Colors last name according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LastNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Validation.ColorTextBoxValidation(lastNameTextBox, Validation.IsNotEmptyOrNull);
+        }
+
+        /// <summary>
+        /// Colors department according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AcademicDepartmentTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Validation.ColorTextBoxValidation(academicDepartmentTextBox, Validation.IsNotEmptyOrNull);
+        }
+
+        /// <summary>
+        /// Colors email according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EmailAddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Validation.ColorTextBoxValidation(emailAddressTextBox, Validation.IsValidEmail);
+        }
+
+        /// <summary>
+        /// Colors building location according to validation rules
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OfficeLocationBuildingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Validation.ColorTextBoxValidation(officeLocationBuildingTextBox, Validation.IsNotEmptyOrNull);
+        }
+
         /// <summary>
         /// Changes the properties of the faculty member that is being edited
         /// </summary>
@@ -88,37 +173,6 @@ namespace ContactManager
             {
                 MessageBox.Show(ex.Message, "Error occurred. Please contact Tarik.", MessageBoxButtons.OK);
                 DialogResult = DialogResult.Cancel;
-            }
-        }
-
-        /// <summary>
-        /// Sends a cancel result to main form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-        }
-
-        /// <summary>
-        /// Processes add/save button click to add/edit faculty member
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            // Ensures form is valid before processing add/edit
-            if (IsValidForm())
-            {
-                if (editMode)
-                {
-                    editFacultyProperties();
-                }
-                else // Not editing
-                {
-                    addNewFaculty();
-                }                
             }
         }
 
@@ -181,56 +235,6 @@ namespace ContactManager
                 MessageBox.Show(message, "Please fix form fields below", MessageBoxButtons.OK);
                 return false;
             }
-        }
-
-        /// <summary>
-        /// Colors first name according to validation rules
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FirstNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Validation.ColorTextBoxValidation(firstNameTextBox, Validation.IsNotEmptyOrNull);
-        }
-
-        /// <summary>
-        /// Colors last name according to validation rules
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LastNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Validation.ColorTextBoxValidation(lastNameTextBox, Validation.IsNotEmptyOrNull);
-        }
-
-        /// <summary>
-        /// Colors department according to validation rules
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AcademicDepartmentTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Validation.ColorTextBoxValidation(academicDepartmentTextBox, Validation.IsNotEmptyOrNull);
-        }
-
-        /// <summary>
-        /// Colors email according to validation rules
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EmailAddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Validation.ColorTextBoxValidation(emailAddressTextBox, Validation.IsValidEmail);
-        }
-
-        /// <summary>
-        /// Colors building location according to validation rules
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OfficeLocationBuildingTextBox_TextChanged(object sender, EventArgs e)
-        {
-            Validation.ColorTextBoxValidation(officeLocationBuildingTextBox, Validation.IsNotEmptyOrNull);
         }
     }
 }

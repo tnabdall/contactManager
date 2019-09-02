@@ -90,115 +90,7 @@ namespace ContactManager
                 editStudentProperties();
             }
         }
-
-        /// <summary>
-        /// Adds new studnet to newStudent reference in form
-        /// </summary>
-        private void addNewStudent()
-        {
-            try
-            {
-                // Try to create new student. Should pass as form is validated.
-                newStudent = new Student(
-                    firstNameTextBox.Text.Trim(),
-                    lastNameTextBox.Text.Trim(),
-                    academicDepartmentTextBox.Text.Trim(),
-                    new StudentContactInformation(emailAddressTextBox.Text.Trim(), mailingAddressTextBox.Text.Trim()),
-                    newCourseList);
-                DialogResult = DialogResult.OK;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-                DialogResult = DialogResult.Cancel;
-            }
-        }
-
-        /// <summary>
-        /// Edits the student properties to the ones on the form
-        /// </summary>
-        private void editStudentProperties()
-        {
-            try
-            {
-                // Sets student's properties to new values if they have been changed
-                if (editStudent.FirstName != firstNameTextBox.Text.Trim())
-                {
-                    editStudent.FirstName = firstNameTextBox.Text.Trim();
-                }
-                if (editStudent.LastName != lastNameTextBox.Text.Trim())
-                {
-                    editStudent.LastName = lastNameTextBox.Text.Trim();
-                }
-                if (editStudent.AcademicDepartment != academicDepartmentTextBox.Text.Trim())
-                {
-                    editStudent.AcademicDepartment = academicDepartmentTextBox.Text.Trim();
-                }
-                if (editStudent.ContactInformation.EmailAddress != emailAddressTextBox.Text.Trim())
-                {
-                    editStudent.ContactInformation.EmailAddress = emailAddressTextBox.Text.Trim();
-                }
-                if (editStudent.ContactInformation.MailingAddress != mailingAddressTextBox.Text.Trim())
-                {
-                    editStudent.ContactInformation.MailingAddress = mailingAddressTextBox.Text.Trim();
-                }
-                // Assigns graduation year if not changed
-                int year; 
-                if(int.TryParse(expectedGraduationYearTextBox.Text.Trim(),out year) && editStudent.ExpectedGraduationYear != year)
-                {
-                    editStudent.ExpectedGraduationYear = year;
-                }
-                editStudent.CourseList = newCourseList; // Setter deep copies list
-                DialogResult = DialogResult.OK;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error occurred. Please contact Tarik.", MessageBoxButtons.OK);
-                DialogResult = DialogResult.Cancel;
-            }
-        }
-
-        /// <summary>
-        /// Checks if form entries are valid
-        /// </summary>
-        /// <returns>Yes/No</returns>
-        private bool IsValidForm()
-        {
-            String message = "";
-            if (!Validation.IsNotEmptyOrNull(firstNameTextBox))
-            {
-                message += "First name is required.\n";
-            }
-            if (!Validation.IsNotEmptyOrNull(lastNameTextBox))
-            {
-                message += "Last name is required.\n";
-            }
-            if (!Validation.IsNotEmptyOrNull(academicDepartmentTextBox))
-            {
-                message += "Academic department is required.\n";
-            }
-            if (!Validation.IsNotEmptyOrNull(mailingAddressTextBox))
-            {
-                message += "Mailing address is required.\n";
-            }
-            if (!Validation.IsValidEmail(emailAddressTextBox))
-            {
-                message += "Email address is required in a correct format.\n";
-            }
-            if (!Validation.IsGreaterThanOrEqualToCurrentYear(expectedGraduationYearTextBox))
-            {
-                message += "Expected graduation year must be equal to or greater than the current year.";
-            }
-            if (message == "")
-            {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show(message, "Please fix form fields below", MessageBoxButtons.OK);
-                return false;
-            }
-        }
+                
 
         /// <summary>
         /// Colors first name according to validation rules
@@ -260,11 +152,6 @@ namespace ContactManager
             Validation.ColorTextBoxValidation(expectedGraduationYearTextBox, Validation.IsGreaterThanOrEqualToCurrentYear);
         }
 
-        private void CourseListListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Creates a dialog to add a new course to the list
         /// </summary>
@@ -313,6 +200,115 @@ namespace ContactManager
         {
             newCourseList.Clear();
             courseListListBox.Items.Clear();
+        }
+
+        /// <summary>
+        /// Adds new studnet to newStudent reference in form
+        /// </summary>
+        private void addNewStudent()
+        {
+            try
+            {
+                // Try to create new student. Should pass as form is validated.
+                newStudent = new Student(
+                    firstNameTextBox.Text.Trim(),
+                    lastNameTextBox.Text.Trim(),
+                    academicDepartmentTextBox.Text.Trim(),
+                    new StudentContactInformation(emailAddressTextBox.Text.Trim(), mailingAddressTextBox.Text.Trim()),
+                    newCourseList);
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                DialogResult = DialogResult.Cancel;
+            }
+        }
+
+        /// <summary>
+        /// Edits the student properties to the ones on the form
+        /// </summary>
+        private void editStudentProperties()
+        {
+            try
+            {
+                // Sets student's properties to new values if they have been changed
+                if (editStudent.FirstName != firstNameTextBox.Text.Trim())
+                {
+                    editStudent.FirstName = firstNameTextBox.Text.Trim();
+                }
+                if (editStudent.LastName != lastNameTextBox.Text.Trim())
+                {
+                    editStudent.LastName = lastNameTextBox.Text.Trim();
+                }
+                if (editStudent.AcademicDepartment != academicDepartmentTextBox.Text.Trim())
+                {
+                    editStudent.AcademicDepartment = academicDepartmentTextBox.Text.Trim();
+                }
+                if (editStudent.ContactInformation.EmailAddress != emailAddressTextBox.Text.Trim())
+                {
+                    editStudent.ContactInformation.EmailAddress = emailAddressTextBox.Text.Trim();
+                }
+                if (editStudent.ContactInformation.MailingAddress != mailingAddressTextBox.Text.Trim())
+                {
+                    editStudent.ContactInformation.MailingAddress = mailingAddressTextBox.Text.Trim();
+                }
+                // Assigns graduation year if not changed
+                int year;
+                if (int.TryParse(expectedGraduationYearTextBox.Text.Trim(), out year) && editStudent.ExpectedGraduationYear != year)
+                {
+                    editStudent.ExpectedGraduationYear = year;
+                }
+                editStudent.CourseList = newCourseList; // Setter deep copies list
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error occurred. Please contact Tarik.", MessageBoxButtons.OK);
+                DialogResult = DialogResult.Cancel;
+            }
+        }
+
+        /// <summary>
+        /// Checks if form entries are valid
+        /// </summary>
+        /// <returns>Yes/No</returns>
+        private bool IsValidForm()
+        {
+            String message = "";
+            if (!Validation.IsNotEmptyOrNull(firstNameTextBox))
+            {
+                message += "First name is required.\n";
+            }
+            if (!Validation.IsNotEmptyOrNull(lastNameTextBox))
+            {
+                message += "Last name is required.\n";
+            }
+            if (!Validation.IsNotEmptyOrNull(academicDepartmentTextBox))
+            {
+                message += "Academic department is required.\n";
+            }
+            if (!Validation.IsNotEmptyOrNull(mailingAddressTextBox))
+            {
+                message += "Mailing address is required.\n";
+            }
+            if (!Validation.IsValidEmail(emailAddressTextBox))
+            {
+                message += "Email address is required in a correct format.\n";
+            }
+            if (!Validation.IsGreaterThanOrEqualToCurrentYear(expectedGraduationYearTextBox))
+            {
+                message += "Expected graduation year must be equal to or greater than the current year.";
+            }
+            if (message == "")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(message, "Please fix form fields below", MessageBoxButtons.OK);
+                return false;
+            }
         }
     }
 }

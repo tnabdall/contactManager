@@ -20,11 +20,8 @@ namespace ContactManager
 {
     public partial class MainForm : Form
     {
-        /// <summary>
-        /// Holds contact list with people in the university
-        /// </summary>
-        public List<Person> contactsList = new List<Person>();
-
+        
+        private List<Person> contactsList = new List<Person>(); // Holds contact list of all university persons in file
         private String Filepath = null; // Holds filepath, null means no file loaded or saved yet
         private bool fileSavedSinceLastChange = true; // Lets us know if the file was saved since last change
         private bool exitByMenuButton = false; // Lets form closing event know if exit from menu was pressed
@@ -261,6 +258,122 @@ namespace ContactManager
         }
 
         /// <summary>
+        /// Allows us to search contacts by first name. Selects all contacts that match.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FirstNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Retrieve first name from new modal dialog
+            GetOneFieldDialog dialog = new GetOneFieldDialog("Enter first name", "First Name", "Search", "Cancel", Validation.IsNotEmptyOrNull);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Go through all contacts and selects those that have the same first name as the dialog retrieved value
+                for (int i = 0; i < contactsList.Count; i++)
+                {
+                    if (contactsList[i].FirstName.ToUpper().Equals(dialog.Value.ToUpper()))
+                    {
+                        contactsListBox.SetSelected(i, true);
+                    }
+                    else
+                    {
+                        contactsListBox.SetSelected(i, false);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Allows us to search contacts by last name. Selects all contacts that match.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LastNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Opens new modal dialog to get last name
+            GetOneFieldDialog dialog = new GetOneFieldDialog("Enter last name", "Last Name", "Search", "Cancel", Validation.IsNotEmptyOrNull);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Go through all contacts and selects those that have the same last name as the dialog retrieved value
+                for (int i = 0; i < contactsList.Count; i++)
+                {
+                    if (contactsList[i].LastName.ToUpper().Equals(dialog.Value.ToUpper()))
+                    {
+                        contactsListBox.SetSelected(i, true);
+                    }
+                    else
+                    {
+                        contactsListBox.SetSelected(i, false);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Searches contact list for contacts that have the requested First and Last Name. Selects those that match.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FirstAndLastNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Opens new modal dialog to retrieve first and last name
+            GetTwoFieldsDialog dialog = new GetTwoFieldsDialog("Enter first and last name", "First Name", "Last Name", "Search", "Cancel", Validation.IsNotEmptyOrNull, Validation.IsNotEmptyOrNull);
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Go through all contacts and selects those that have the same first and last name as the dialog retrieved value
+                for (int i = 0; i < contactsList.Count; i++)
+                {
+                    if (contactsList[i].FirstName.ToUpper() == dialog.Value1.ToUpper() && contactsList[i].LastName.ToUpper() == dialog.Value2.ToUpper())
+                    {
+                        contactsListBox.SetSelected(i, true);
+                    }
+                    else
+                    {
+                        contactsListBox.SetSelected(i, false);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles form close request. Prompts user to confirm exit if they have not saved.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Prompt for user to save form if there has been any changes
+            // and they did not exit by menu button
+            if (!exitByMenuButton && !fileSavedSinceLastChange)
+            {
+                DialogResult result = MessageBox.Show("There are unsaved changes. Would you like to save before exiting the program?", "Confirm Exit", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    bool userSavedFile = SaveFile(true); // Save as prompt
+                    if (!userSavedFile)
+                    { // If user requested to save file but didn't save file, cancel exit request
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        e.Cancel = false; // Continue to close
+                    }
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true; ; // Cancel exit request
+                }
+                else
+                {
+                    e.Cancel = false;  // Continue to close
+                }
+            }
+        }
+
+        /// <summary>
         /// Opens the requested file and loads the contacts from the file
         /// </summary>
         /// <param name="sender"></param>
@@ -452,120 +565,6 @@ namespace ContactManager
 
         }
 
-        /// <summary>
-        /// Allows us to search contacts by first name. Selects all contacts that match.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FirstNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Retrieve first name from new modal dialog
-            GetOneFieldDialog dialog = new GetOneFieldDialog("Enter first name", "First Name", "Search", "Cancel", Validation.IsNotEmptyOrNull);
-            DialogResult result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                // Go through all contacts and selects those that have the same first name as the dialog retrieved value
-                for(int i = 0; i<contactsList.Count; i++)
-                {
-                    if (contactsList[i].FirstName.ToUpper().Equals(dialog.Value.ToUpper()))
-                    {
-                        contactsListBox.SetSelected(i, true);
-                    }
-                    else
-                    {
-                        contactsListBox.SetSelected(i, false);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Allows us to search contacts by last name. Selects all contacts that match.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void LastNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Opens new modal dialog to get last name
-            GetOneFieldDialog dialog = new GetOneFieldDialog("Enter last name", "Last Name", "Search", "Cancel", Validation.IsNotEmptyOrNull);
-            DialogResult result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                // Go through all contacts and selects those that have the same last name as the dialog retrieved value
-                for (int i = 0; i < contactsList.Count; i++)
-                {
-                    if (contactsList[i].LastName.ToUpper().Equals(dialog.Value.ToUpper()))
-                    {
-                        contactsListBox.SetSelected(i, true);
-                    }
-                    else
-                    {
-                        contactsListBox.SetSelected(i, false);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Searches contact list for contacts that have the requested First and Last Name. Selects those that match.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FirstAndLastNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Opens new modal dialog to retrieve first and last name
-            GetTwoFieldsDialog dialog = new GetTwoFieldsDialog("Enter first and last name", "First Name", "Last Name", "Search", "Cancel", Validation.IsNotEmptyOrNull, Validation.IsNotEmptyOrNull);
-            DialogResult result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                // Go through all contacts and selects those that have the same first and last name as the dialog retrieved value
-                for (int i = 0; i < contactsList.Count; i++)
-                {
-                    if (contactsList[i].FirstName.ToUpper() == dialog.Value1.ToUpper() && contactsList[i].LastName.ToUpper()==dialog.Value2.ToUpper())
-                    {
-                        contactsListBox.SetSelected(i, true);
-                    }
-                    else
-                    {
-                        contactsListBox.SetSelected(i, false);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Handles form close request. Prompts user to confirm exit if they have not saved.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Prompt for user to save form if there has been any changes
-            // and they did not exit by menu button
-            if (!exitByMenuButton && !fileSavedSinceLastChange)
-            {
-                DialogResult result = MessageBox.Show("There are unsaved changes. Would you like to save before exiting the program?", "Confirm Exit", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    bool userSavedFile = SaveFile(true); // Save as prompt
-                    if (!userSavedFile)
-                    { // If user requested to save file but didn't save file, cancel exit request
-                        e.Cancel = true;
-                    }
-                    else
-                    {
-                        e.Cancel = false; // Continue to close
-                    }
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    e.Cancel = true; ; // Cancel exit request
-                }
-                else
-                {
-                    e.Cancel = false;  // Continue to close
-                }
-            }
-        }
+        
     }
 }
