@@ -39,25 +39,28 @@
             // value1Label
             // 
             this.value1Label.AutoSize = true;
-            this.value1Label.Location = new System.Drawing.Point(21, 31);
+            this.value1Label.Location = new System.Drawing.Point(16, 25);
+            this.value1Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.value1Label.Name = "value1Label";
-            this.value1Label.Size = new System.Drawing.Size(94, 17);
+            this.value1Label.Size = new System.Drawing.Size(71, 13);
             this.value1Label.TabIndex = 0;
             this.value1Label.Text = "Enter Value 1";
             // 
             // value1TextBox
             // 
-            this.value1TextBox.Location = new System.Drawing.Point(142, 31);
+            this.value1TextBox.Location = new System.Drawing.Point(106, 25);
+            this.value1TextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.value1TextBox.Name = "value1TextBox";
-            this.value1TextBox.Size = new System.Drawing.Size(258, 22);
+            this.value1TextBox.Size = new System.Drawing.Size(194, 20);
             this.value1TextBox.TabIndex = 1;
             this.value1TextBox.TextChanged += new System.EventHandler(this.Value1TextBox_TextChanged);
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(231, 110);
+            this.okButton.Location = new System.Drawing.Point(173, 87);
+            this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(56, 24);
             this.okButton.TabIndex = 3;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -65,9 +68,11 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(325, 110);
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(244, 87);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(56, 24);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -76,27 +81,29 @@
             // value2Label
             // 
             this.value2Label.AutoSize = true;
-            this.value2Label.Location = new System.Drawing.Point(21, 78);
+            this.value2Label.Location = new System.Drawing.Point(16, 63);
+            this.value2Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.value2Label.Name = "value2Label";
-            this.value2Label.Size = new System.Drawing.Size(94, 17);
+            this.value2Label.Size = new System.Drawing.Size(71, 13);
             this.value2Label.TabIndex = 0;
             this.value2Label.Text = "Enter Value 2";
             // 
             // value2TextBox
             // 
-            this.value2TextBox.Location = new System.Drawing.Point(142, 74);
+            this.value2TextBox.Location = new System.Drawing.Point(106, 60);
+            this.value2TextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.value2TextBox.Name = "value2TextBox";
-            this.value2TextBox.Size = new System.Drawing.Size(258, 22);
+            this.value2TextBox.Size = new System.Drawing.Size(194, 20);
             this.value2TextBox.TabIndex = 2;
             this.value2TextBox.TextChanged += new System.EventHandler(this.Value2TextBox_TextChanged);
             // 
             // GetTwoFieldsDialog
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(435, 149);
+            this.ClientSize = new System.Drawing.Size(326, 121);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.value2TextBox);
@@ -104,6 +111,7 @@
             this.Controls.Add(this.value2Label);
             this.Controls.Add(this.value1Label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GetTwoFieldsDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Enter values";

@@ -37,25 +37,28 @@
             // valueLabel
             // 
             this.valueLabel.AutoSize = true;
-            this.valueLabel.Location = new System.Drawing.Point(21, 31);
+            this.valueLabel.Location = new System.Drawing.Point(16, 25);
+            this.valueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.valueLabel.Name = "valueLabel";
-            this.valueLabel.Size = new System.Drawing.Size(82, 17);
+            this.valueLabel.Size = new System.Drawing.Size(62, 13);
             this.valueLabel.TabIndex = 0;
             this.valueLabel.Text = "Enter Value";
             // 
             // valueTextBox
             // 
-            this.valueTextBox.Location = new System.Drawing.Point(142, 31);
+            this.valueTextBox.Location = new System.Drawing.Point(106, 25);
+            this.valueTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.valueTextBox.Name = "valueTextBox";
-            this.valueTextBox.Size = new System.Drawing.Size(258, 22);
+            this.valueTextBox.Size = new System.Drawing.Size(194, 20);
             this.valueTextBox.TabIndex = 1;
             this.valueTextBox.TextChanged += new System.EventHandler(this.ValueTextBox_TextChanged);
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(231, 84);
+            this.okButton.Location = new System.Drawing.Point(173, 62);
+            this.okButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(56, 28);
             this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -64,9 +67,10 @@
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(325, 84);
+            this.cancelButton.Location = new System.Drawing.Point(244, 62);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(56, 28);
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -75,15 +79,16 @@
             // GetOneFieldDialog
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(435, 119);
+            this.ClientSize = new System.Drawing.Size(326, 97);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.valueTextBox);
             this.Controls.Add(this.valueLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GetOneFieldDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Enter value";
