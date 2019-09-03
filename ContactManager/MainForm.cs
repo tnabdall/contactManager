@@ -24,7 +24,6 @@ namespace ContactManager
         private List<Person> contactsList = new List<Person>(); // Holds contact list of all university persons in file
         private String Filepath = null; // Holds filepath, null means no file loaded or saved yet
         private bool fileSavedSinceLastChange = true; // Lets us know if the file was saved since last change
-        private bool exitByMenuButton = false; // Lets form closing event know if exit from menu was pressed
 
         /// <summary>
         /// Creates form
@@ -35,46 +34,13 @@ namespace ContactManager
         }
 
         /// <summary>
-        /// Proccesses exit request
+        /// Processes exit request
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Prompt for user to save form if there has been any changes
-            if (!fileSavedSinceLastChange)
-            {
-                DialogResult result = MessageBox.Show("There are unsaved changes. Would you like to save before exiting the program?","Confirm Exit",MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    bool userSavedFile = SaveFile(true); // Save as prompt
-                    if (!userSavedFile)
-                    { // If user requested to save file but didn't save file, cancel exit request
-                        return;
-                    }
-                    else
-                    {
-                        exitByMenuButton = true;
-                        Application.Exit();
-                    }
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    return; // Cancel exit request
-                }
-                else // They chose No
-                {
-                    exitByMenuButton = true;
-                    Application.Exit();                    
-                    // Continue to exit
-                }
-            }
-            else // No changes so no need to confirm exit
-            {
-                exitByMenuButton = true;
-                Application.Exit();
-            }
-             
+            Application.Exit();  // Form closing event will handle confirmation          
         }
 
         /// <summary>
@@ -344,8 +310,7 @@ namespace ContactManager
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Prompt for user to save form if there has been any changes
-            // and they did not exit by menu button
-            if (!exitByMenuButton && !fileSavedSinceLastChange)
+            if (!fileSavedSinceLastChange)
             {
                 DialogResult result = MessageBox.Show("There are unsaved changes. Would you like to save before exiting the program?", "Confirm Exit", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
