@@ -562,6 +562,10 @@ namespace ContactManager
 
         }
 
+        /// <summary>
+        /// Adds a contact to the contact list and to the display list box
+        /// </summary>
+        /// <param name="contact">Subclass of Person to add to the contact list</param>
         private void AddContactToList(Person contact)
         {
             contactsList.Add(contact);
