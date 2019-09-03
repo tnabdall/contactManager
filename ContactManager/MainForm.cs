@@ -50,7 +50,6 @@ namespace ContactManager
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(contactsListBox.SelectedIndices.Count.ToString());
             String message = "This application allows you to manage contact information for members of the university.\n" +
                 "Right click on contacts box to bring up options to add, edit, delete, or search for contacts.\n" +
                 "This application currently supports adding faculty and students.\n" +
