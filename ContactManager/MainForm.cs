@@ -456,6 +456,11 @@ namespace ContactManager
                 MessageBox.Show("Error in writing " + Filepath + ". " + ex.Message);
                 return false;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error {ex.Message}. Please contact Tarik.");
+                return false;
+            }
         }
 
         /// <summary>
@@ -521,6 +526,11 @@ namespace ContactManager
             catch (IOException ex)
             {
                 MessageBox.Show("Error in reading " + Filepath + ". " + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error {ex.Message}. Please contact Tarik.");
                 return false;
             }
 
