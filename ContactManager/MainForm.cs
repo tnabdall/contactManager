@@ -180,7 +180,7 @@ namespace ContactManager
                     // If result is OK, update the contact List with the new string. Flip file flag.
                     if (result == DialogResult.OK)
                     {
-                        MessageBox.Show($"Saved changes to student {person.FirstName} {person.LastName}");
+                        MessageBox.Show($"Saved changes to faculty {person.FirstName} {person.LastName}");
                         contactsListBox.Items[selectedIndices[0]] = contactsList[selectedIndices[0]].ToListBoxString();
                         fileSavedSinceLastChange = false;
                     }
